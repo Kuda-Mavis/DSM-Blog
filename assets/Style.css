@@ -1,0 +1,266 @@
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  background: #fafafa;
+  color: #222;
+  transition: 0.3s;
+}
+
+/* LAYOUT */
+.container {
+  display: flex;
+  max-width: 1250px; /* increase width */
+  margin: 0 auto; /* center properly */
+}
+/* TOC - FIXED + BEAUTIFIED */
+.toc {
+  width: 230px;
+  padding: 30px 18px;
+  position: sticky;
+  top: 20px;
+  height: fit-content; /* 🔥 removes large gap */
+  border-right: 1px solid #eee;
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+}
+
+/* TOC TITLE */
+.toc h3 {
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 12px;
+}
+
+/* TOC LINKS */
+.toc a {
+  display: block;
+  padding: 6px 10px;
+  margin: 4px 0;
+  text-decoration: none;
+  color: #555;
+  font-size: 16px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+/* HOVER */
+.toc a:hover {
+  background: #f3f3f3;
+  color: #000;
+  transform: translateX(3px);
+}
+
+/* ACTIVE */
+.toc a.active {
+  background: #000;
+  color: #fff;
+  font-weight: 500;
+  transform: translateX(5px);
+}
+
+/* ACTIVE INDICATOR */
+.toc a.active::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 12px;
+  background: #fff;
+  margin-right: 8px;
+  border-radius: 2px;
+}
+
+/* CONTENT */
+.content {
+  flex: 1;
+  padding: 60px;
+  max-width: 780px;
+}
+
+/* HERO */
+.hero {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #000;
+  margin-top: 20px;
+  border-radius: 2px;
+}
+
+/* TITLES */
+.title-main {
+  font-size: 36px;
+  font-weight: 700; /* bold */
+  margin-bottom: 5px;
+}
+
+.title-sub {
+  font-size: 17px;
+  font-weight: 600; /* semi-bold (looks cleaner than full bold) */
+  color: #555;
+  margin-top: 0;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.author {
+  color: #888;
+  font-size: 22px;
+}
+
+.meta {
+  color: #888;
+  font-size: 20px;
+}
+
+/* TEXT */
+h2 {
+  margin-top: 60px;
+  font-size: 26px;
+}
+
+p {
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+/* CARDS */
+.card {
+  background: #fff;
+  padding: 20px;
+  margin-top: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* DARK MODE */
+.dark {
+  background: #0f1115;
+  color: #eee;
+}
+
+.dark .toc {
+  background: linear-gradient(180deg, #111 0%, #0f1115 100%);
+  border-color: #222;
+}
+
+.dark .toc a {
+  color: #aaa;
+}
+
+.dark .toc a:hover {
+  background: #1a1d24;
+  color: #fff;
+}
+
+.dark .toc a.active {
+  background: #fff;
+  color: #000;
+}
+
+.dark .card {
+  background: #1a1d24;
+}
+
+.dark .title-sub {
+  color: #bbb;
+}
+
+.dark .hero::after {
+  background: #fff;
+}
+
+/* BUTTON */
+#toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  border: none;
+  background: #000;
+  color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* SMOOTH SCROLL */
+html {
+  scroll-behavior: smooth;
+}
+.content p {
+  font-size: 16px; /* reduced from 17 → subtle but effective */
+  line-height: 1.75; /* slightly tighter */
+  text-align: justify;
+
+  hyphens: none;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+.intro-image {
+  width: 85%; /* was 100% */
+  max-width: 650px; /* caps the size nicely */
+  margin: 25px auto; /* centers it */
+  border-radius: 12px;
+  display: block;
+}
+figure {
+  margin-top: 25px;
+}
+
+figcaption {
+  font-size: 13px;
+  color: #888;
+  margin-top: 8px;
+  text-align: center;
+}
+.image-row {
+  display: flex;
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.image-row figure {
+  flex: 1;
+  margin: 0;
+}
+
+.image-row img {
+  width: 100%;
+  height: 250px; /* keeps both same height */
+  object-fit: cover; /* crops nicely */
+  border-radius: 12px;
+}
+
+.image-row figcaption {
+  text-align: center;
+  font-size: 13px;
+  color: #888;
+  margin-top: 8px;
+}
+@media (max-width: 768px) {
+  .image-row {
+    flex-direction: column;
+  }
+}
+h3 {
+  font-size: 18px;
+  margin-top: 25px;
+  color: #444;
+}

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maternal Health in India</title>
+
+    <link rel="stylesheet" href="assets/Style.css" />
+    <!-- Google Font -->
+    <link rel="stylesheet" />
+  </head>
+
+  <body>
+    <button id="toggle">🌙</button>
+
+    <div class="container">
+      <!-- TABLE OF CONTENTS -->
+      <nav class="toc">
+        <h3>Contents</h3>
+        <a href="#intro">Introduction</a>
+        <a href="#problem">Problem</a>
+        <a href="#methods">Methodology</a>
+        <a href="#analysis">Analysis</a>
+        <a href="#why">Why It Matters</a>
+        <a href="#references">References</a>
+      </nav>
+
+      <!-- MAIN CONTENT -->
+      <main class="content">
+        <!-- HERO -->
+        <header class="hero">
+          <h1 class="title-main">Maternal Health in India</h1>
+          <h1>A Study of Regional Inequalities and Healthcare Access</h1>
+          <p class="author">Kudakwashe Mavis Chakanyuka</p>
+          <p class="meta">April 2026</p>
+        </header>
+
+        <!-- INTRO -->
+        <section id="intro">
+          <h2>Introduction</h2>
+
+          <p>
+            Maternal health is often discussed using numbers such as mortality
+            rates, institutional delivery percentages, and antenatal care
+            coverage. These measures are important, but they do not always show
+            the full picture. They often hide deeper issues such as unequal
+            access to care, differences in healthcare facilities, and the
+            everyday experiences of women in different parts of the country. In
+            a country as large and diverse as India, these differences are not
+            the same everywhere. Health outcomes change from one state to
+            another and also differ between rural and urban areas, and they are
+            influenced by income levels and social conditions.
+          </p>
+
+          <p>
+            Access to healthcare has improved over time, many gaps still remain,
+            and these are connected to larger social and structural conditions.
+            To understand maternal health properly, it is important to look
+            beyond single indicators and study how access to healthcare,
+            education, and living conditions work together to shape outcomes. It
+            also requires understanding how these factors vary across regions
+            and population groups, and why some areas continue to face greater
+            challenges than others.
+          </p>
+          <p>
+            <strong
+              >How much does access shape maternal health outcomes?</strong
+            >
+          </p>
+        </section>
+
+        <div class="image-row">
+          <figure>
+         <img src="assets/images/Intro.png" alt="Maternal care in rural area">
+         <figcaption>Maternal care in a rural village setting</figcaption>
+          </figure>
+
+          <figure>
+         <img src="assets/images/Intro 2.png" alt="Maternal care in urban hospital">
+         <figcaption>Maternal care in an urban hospital setting</figcaption>
+         </figure>
+         </div>
+         </figure>
+
+
+        <section id="problem">
+          <h2>Problem Statement</h2>
+
+          <p> 
+            While access to services has increased, the benefits are not evenly 
+            distributed, and some regions continue to experience poorer outcomes 
+            than others. These differences are influenced by multiple factors such 
+            as healthcare availability, education levels, socioeconomic conditions,
+            and regional inequalities in infrastructure and resources. The core 
+            problem is not just limited access, but a lack of clear understanding 
+            of how these factors interact to shape maternal health outcomes across 
+            different regions. Without understanding these relationships, it 
+            becomes difficult to identify where interventions are most needed and 
+            how resources can be effectively allocated to reduce disparities.
+        </p>
+        </section>
+
+        <section id="methodology">
+        <h2>Methodology</h2>
+
+        <p>
+        This project applies basic concepts from data science and database systems 
+        to study maternal health outcomes. Data is collected from multiple sources 
+        using APIs and combined using common fields such as state and year, 
+        allowing different datasets to be connected and analyzed together. The 
+        analysis uses exploratory data analysis and visualization to identify 
+        patterns and trends in maternal health indicators, and it examines 
+        relationships between healthcare access and health outcomes using 
+        correlation analysis, while recognizing that correlation does not imply 
+        causation. Key indicators such as infant mortality rate and fertility rate 
+        are used to represent overall health outcomes across regions.
+        </p>
+
+        </section>
+
+        <!-- ANALYSIS -->
+         <section id="analysis">
+        <h2>Analysis</h2>
+
+           
+        </section>
+       
+
+        <!-- WHY -->
+        <section id="why">
+          <h2>Why This Matters</h2>
+          <p>
+            Maternal health reflects both policy effectiveness and deeper social
+            structures. If access improves but outcomes do not, it suggests
+            underlying inequalities.
+          </p>
+          <p>
+            Understanding these relationships helps identify where interventions
+            will have the greatest impact.
+          </p>
+        </section>
+
+        <!-- WHY -->
+        <section id="references">
+          <h2>Works Cited</h2>
+          <p>
+            Maternal health reflects both policy effectiveness and deeper social
+            structures. If access improves but outcomes do not, it suggests
+            underlying inequalities.
+          </p>
+          <p>
+            Understanding these relationships helps identify where interventions
+            will have the greatest impact.
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+      // Dark mode toggle
+      document.getElementById("toggle").onclick = () => {
+        document.body.classList.toggle("dark");
+      };
+
+      // Active TOC highlighting
+      const sections = document.querySelectorAll("section");
+      const links = document.querySelectorAll(".toc a");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+
+        sections.forEach((sec) => {
+          const top = sec.offsetTop - 120;
+          if (scrollY >= top) {
+            current = sec.id;
+          }
+        });
+
+        links.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
