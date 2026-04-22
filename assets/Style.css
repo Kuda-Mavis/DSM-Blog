@@ -264,3 +264,74 @@ h3 {
   margin-top: 25px;
   color: #444;
 }
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  /* Stack layout */
+  .container {
+    flex-direction: column;
+    margin: 0 15px;
+  }
+
+  /* Hide sidebar TOC (important) */
+  .toc {
+    display: none;
+  }
+
+  /* Content takes full width */
+  .content {
+    padding: 20px 0;
+    max-width: 100%;
+  }
+
+  /* Titles scale down */
+  .title-main {
+    font-size: 26px;
+  }
+
+  .title-sub {
+    font-size: 15px;
+  }
+
+  .author {
+    font-size: 16px;
+  }
+
+  .meta {
+    font-size: 14px;
+  }
+
+  /* Paragraph text */
+  .content p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* Headings */
+  h2 {
+    font-size: 20px;
+    margin-top: 40px;
+  }
+
+  /* Images stack */
+  .image-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .image-row img {
+    height: auto; /* prevents cropping issues */
+  }
+
+  /* Single images */
+  .intro-image {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Button smaller */
+  #toggle {
+    padding: 8px;
+    top: 10px;
+    right: 10px;
+  }
+}
