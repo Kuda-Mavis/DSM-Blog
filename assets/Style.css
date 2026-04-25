@@ -76,7 +76,7 @@ body {
 .content {
   flex: 1;
   padding: 60px;
-  max-width: 780px;
+  max-width: 740px; /* was 780px → tighter reading */
 }
 
 /* HERO */
@@ -128,10 +128,8 @@ h2 {
 }
 
 p {
-  line-height: 1.7;
-  font-size: 16px;
+  margin-top: 0;
 }
-
 ul {
   padding-left: 20px;
 }
@@ -205,9 +203,14 @@ html {
   scroll-behavior: smooth;
 }
 .content p {
-  font-size: 16px; /* reduced from 17 → subtle but effective */
-  line-height: 1.75; /* slightly tighter */
+  font-size: 15.3px; /* 🔥 tiny reduction */
+  line-height: 1.58; /* 🔥 tighter but still readable */
+  margin-bottom: 12px; /* tighter vertical rhythm */
+
   text-align: justify;
+
+  letter-spacing: -0.18px; /* 🔥 slightly tighter */
+  word-spacing: -0.6px; /* ⚠️ reduced from -0.7 (was too aggressive) */
 
   hyphens: none;
   word-break: normal;
@@ -302,8 +305,8 @@ figcaption {
   }
 
   h2 {
-    font-size: 19px;
-    margin-top: 35px;
+    margin-top: 50px; /* was 60 */
+    margin-bottom: 10px;
   }
 
   .image-row {
@@ -330,4 +333,47 @@ figcaption {
     top: 10px;
     right: 10px;
   }
+}
+#explore {
+  padding: 50px 0;
+}
+
+.explore-container {
+  display: flex;
+  gap: 40px;
+}
+
+.explore-controls {
+  flex: 1;
+}
+
+.explore-controls select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.explore-chart {
+  flex: 2;
+}
+.explore-container {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.explore-controls {
+  flex: 1;
+}
+
+.explore-controls select {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.explore-chart {
+  flex: 2;
 }

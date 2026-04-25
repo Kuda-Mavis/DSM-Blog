@@ -22,6 +22,7 @@
         <a href="#methodology">Methodology</a>
         <a href="#analysis">Analysis</a>
         <a href="#why">Why It Matters</a>
+        <a href="#diy">DIY Exploration</a>
         <a href="#references">References</a>
       </nav>
 
@@ -54,18 +55,20 @@
 
           <p>
             Access to healthcare has improved over time, many gaps still remain,
-            and these are connected to larger social and structural conditions.
-            To understand maternal health properly, it is important to look
-            beyond single indicators and study how access to healthcare,
-            education, and living conditions work together to shape outcomes. It
-            also requires understanding how these factors vary across regions
-            and population groups, and why some areas continue to face greater
-            challenges than others.
+          and these are connected to larger social and structural conditions.
+          To understand maternal health, it is important to look
+          beyond single indicators and study how access to healthcare,
+          education, and living conditions work together to shape outcomes. It
+          also requires understanding how these factors vary across regions
+          and population groups, and why some areas continue to face greater
+          challenges than others. Patterns can be examined using
+          state-level indicators such as institutional delivery, antenatal
+          care, and infant mortality rates to better understand regional
+          differences in outcomes.
           </p>
+
           <p>
-            <strong
-              >How much does access shape maternal health outcomes?</strong
-            >
+            <strong>How much does access shape maternal health outcomes?</strong>
           </p>
         </section>
 
@@ -86,17 +89,19 @@
         <section id="problem">
           <h2>Problem Statement</h2>
 
-          <p> 
-            While access to services has increased, the benefits are not evenly 
-            distributed, and some regions continue to experience poorer outcomes 
-            than others. These differences are influenced by multiple factors such 
-            as healthcare availability, education levels, socioeconomic conditions,
-            and regional inequalities in infrastructure and resources. The core 
-            problem is not just limited access, but a lack of clear understanding 
-            of how these factors interact to shape maternal health outcomes across 
-            different regions. Without understanding these relationships, it 
-            becomes difficult to identify where interventions are most needed and 
-            how resources can be effectively allocated to reduce disparities.
+        <p> 
+          While access to services has increased, the benefits are not evenly 
+        distributed, and some regions continue to experience poorer outcomes. 
+        These differences are influenced by factors such as healthcare availability, 
+        education levels, socioeconomic conditions, and regional inequalities in 
+        infrastructure and resources. The core problem is not just limited access, 
+        but a lack of understanding of how these factors interact to shape maternal 
+        health outcomes across regions. Using state-level indicators such as 
+        institutional delivery, antenatal care, financial access, and infant mortality 
+        rates, this study examines how these factors are associated with variations 
+        in outcomes across states. Without understanding these relationships, it 
+        becomes difficult to identify where interventions are most needed and how 
+        resources can be effectively allocated to reduce disparities.
         </p>
         </section>
 
@@ -104,43 +109,233 @@
         <h2>Methodology</h2>
 
         <p>
-        This project applies basic concepts from data science and database systems 
-        to study maternal health outcomes. Data is collected from multiple sources 
-        using APIs and combined using common fields such as state and year, 
-        allowing different datasets to be connected and analyzed together. The 
-        analysis uses exploratory data analysis and visualization to identify 
-        patterns and trends in maternal health indicators, and it examines 
-        relationships between healthcare access and health outcomes using 
-        correlation analysis, while recognizing that correlation does not imply 
-        causation. Key indicators such as infant mortality rate and fertility rate 
-        are used to represent overall health outcomes across regions.
+        This project applies basic concepts from data science and database systems to study 
+        maternal health outcomes. Data is collected from multiple sources using APIs and 
+        combined using common fields such as state, allowing datasets to be connected and 
+        analyzed together. The NFHS dataset is filtered to retain relevant indicators such 
+        as institutional delivery, antenatal care, financial access, anaemia, and fertility, 
+        while the mortality dataset is used to extract infant mortality rate (IMR) as the 
+        primary outcome variable. The data is cleaned, standardized, and aggregated to 
+        ensure one observation per state before merging into a unified dataset. The analysis uses 
+        exploratory data analysis and visualization to identify patterns and trends in 
+        maternal health indicators, and examines relationships between healthcare access 
+        and health outcomes using correlation analysis, while recognizing that correlation 
+        does not imply causation. Indicators are used to compare states and 
+        examine how variations in access and socioeconomic conditions are associated 
+        with differences in maternal health.
         </p>
 
-        </section>
-
         <!-- ANALYSIS -->
-         <section id="analysis">
-        <h2>Analysis</h2>
+          <section id="analysis">
+            <h2>Analysis</h2>
 
-           
-        </section>
+            <p>
+              The data reveals a clear pattern that better access to healthcare is associated with improved outcomes.
+              States with higher institutional delivery rates and stronger antenatal care coverage consistently show lower
+              infant mortality rates (IMR), suggesting that access to formal healthcare services plays a key role in
+              maternal and child health.
+            </p>
+
+            <p>
+              This relationship, however, is not uniform across all variables. Financial access does not show a strong or
+              consistent relationship with IMR, indicating that having financial resources alone does not necessarily
+              translate into better health outcomes. In contrast, demographic factors such as adolescent fertility are
+              associated with higher IMR, pointing to underlying social and behavioral risks that influence outcomes.
+            </p>
+
+            <p>
+              There are also clear differences across regions. Some states perform significantly better than others,
+              reflecting variations in healthcare infrastructure, accessibility, and broader socioeconomic conditions.
+              These disparities suggest that improvements are not evenly distributed and that certain populations remain
+              more vulnerable.
+            </p>
+
+            <p>
+              Overall, the analysis shows that while improving healthcare access is essential, it must be supported by
+              broader social and structural changes. Maternal and child health outcomes are shaped by a combination of
+              healthcare availability, demographic factors, and regional inequalities.
+            </p>
+
+          </section>
        
 
         <!-- WHY -->
         <section id="why">
           <h2>Why This Matters</h2>
+
           <p>
-            Maternal health reflects both policy effectiveness and deeper social
-            structures. If access improves but outcomes do not, it suggests
-            underlying inequalities.
+            Maternal health is not just a healthcare issue. It reflects how fairly resources, opportunities,
+            and services are distributed across society. When some regions consistently experience worse outcomes,
+            it points to deeper structural inequalities in access to care, education, and basic infrastructure.
+            The patterns in this data show that improving access to healthcare can significantly reduce risks,
+            but access alone is not enough, as social factors such as early childbearing and regional disparities
+            continue to influence outcomes.
           </p>
+
           <p>
-            Understanding these relationships helps identify where interventions
-            will have the greatest impact.
+            Understanding these relationships helps identify where interventions will have the greatest impact.
+            It allows policymakers and stakeholders to focus resources on the most vulnerable populations,
+            particularly in rural areas, and design solutions that combine healthcare access with broader
+            social support systems. Ultimately, improving maternal and child health is about more than reducing
+            statistics; it is about ensuring that all individuals, regardless of where they live, have an equal
+            chance at safe and healthy outcomes.
           </p>
+
         </section>
 
-        <!-- WHY -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<section id="explore">
+  <h2>Explore Relationships</h2>
+
+  <div class="explore-container">
+
+    <!-- CONTROLS -->
+    <div class="explore-controls">
+
+      <label><strong>Variable</strong></label>
+      <select id="variableSelect">
+        <option value="delivery">Institutional Delivery</option>
+        <option value="antenatal">Antenatal Care</option>
+        <option value="fertility">Adolescent Fertility</option>
+        <option value="financial">Financial Access</option>
+      </select>
+
+      <label><strong>Residence</strong></label>
+      <select id="residenceSelect">
+        <option value="all">All</option>
+        <option value="Rural">Rural</option>
+        <option value="Urban">Urban</option>
+      </select>
+
+    </div>
+
+    <!-- GRAPH -->
+    <div class="explore-chart">
+      <canvas id="chart"></canvas>
+    </div>
+
+  </div>
+</section>
+
+<script>
+let dataset = [];
+let chart;
+
+// LOAD CSV
+async function loadData() {
+  const res = await fetch("assets/Final_dataset.csv");
+  const text = await res.text();
+
+  const rows = text.split("\n").slice(1);
+
+  dataset = rows.map(row => {
+    const cols = row.split(",");
+
+    return {
+      state: cols[0],
+      residence: cols[1],
+      delivery: parseFloat(cols[2]),
+      antenatal: parseFloat(cols[3]),
+      financial: parseFloat(cols[4]),
+      fertility: parseFloat(cols[6]),
+      imr: parseFloat(cols[8])
+    };
+  }).filter(d => !isNaN(d.imr));
+}
+
+// REGRESSION FUNCTION
+function regression(data, xKey) {
+  let x = data.map(d => d[xKey]);
+  let y = data.map(d => d.imr);
+
+  let n = x.length;
+  let sumX = x.reduce((a,b)=>a+b,0);
+  let sumY = y.reduce((a,b)=>a+b,0);
+  let sumXY = x.map((v,i)=>v*y[i]).reduce((a,b)=>a+b,0);
+  let sumX2 = x.map(v=>v*v).reduce((a,b)=>a+b,0);
+
+  let slope = (n*sumXY - sumX*sumY) / (n*sumX2 - sumX*sumX);
+  let intercept = (sumY - slope*sumX)/n;
+
+  return {slope, intercept};
+}
+
+// DRAW CHART
+function drawChart() {
+  let variable = document.getElementById("variableSelect").value;
+  let residence = document.getElementById("residenceSelect").value;
+
+  let data = dataset;
+
+  if (residence !== "all") {
+    data = data.filter(d => d.residence === residence);
+  }
+
+  const points = data.map(d => ({
+    x: d[variable],
+    y: d.imr,
+    state: d.state
+  }));
+
+  // regression line
+  const {slope, intercept} = regression(data, variable);
+
+  let minX = Math.min(...points.map(p=>p.x));
+  let maxX = Math.max(...points.map(p=>p.x));
+
+  const line = [
+    {x: minX, y: slope*minX + intercept},
+    {x: maxX, y: slope*maxX + intercept}
+  ];
+
+  if (chart) chart.destroy();
+
+  chart = new Chart(document.getElementById("chart"), {
+    type: "scatter",
+    data: {
+      datasets: [
+        {
+          label: "States",
+          data: points,
+          pointRadius: 5
+        },
+        {
+          label: "Trend",
+          data: line,
+          type: "line",
+          fill: false
+        }
+      ]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return context.raw.state + 
+                " (x: " + context.raw.x + ", IMR: " + context.raw.y + ")";
+            }
+          }
+        }
+      },
+      scales: {
+        x: { title: { display: true, text: variable }},
+        y: { title: { display: true, text: "IMR" }}
+      }
+    }
+  });
+}
+
+// INIT
+loadData().then(drawChart);
+
+// EVENTS
+document.getElementById("variableSelect").onchange = drawChart;
+document.getElementById("residenceSelect").onchange = drawChart;
+</script>
+
+        <!-- REFERENCES -->
         <section id="references">
           <h2>Works Cited</h2>
           <p>
