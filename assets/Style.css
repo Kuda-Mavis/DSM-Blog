@@ -338,42 +338,149 @@ figcaption {
   padding: 50px 0;
 }
 
-.explore-container {
+/* RESIDENCE TOGGLE */
+.residence-toggle {
   display: flex;
-  gap: 40px;
+  gap: 12px;
+  margin: 20px 0 18px;
 }
 
-.explore-controls {
-  flex: 1;
+.res-btn {
+  padding: 10px 28px;
+  border-radius: 50px;
+  border: 2px solid #ddd;
+  background: #fff;
+  font-size: 15px;
+  font-family: Georgia, serif;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: #555;
 }
 
-.explore-controls select {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+.res-btn:hover {
+  border-color: #aaa;
+  color: #000;
 }
 
-.explore-chart {
-  flex: 2;
+.res-btn[data-res="Rural"].active {
+  background: #2d9e56;
+  border-color: #2d9e56;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(45,158,86,0.35);
 }
-.explore-container {
+
+.res-btn[data-res="Urban"].active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(37,99,235,0.35);
+}
+
+/* VARIABLE PILLS */
+.var-pills {
   display: flex;
-  gap: 40px;
-  margin-top: 20px;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
 }
 
-.explore-controls {
-  flex: 1;
+.var-pill {
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: 1.5px solid #ddd;
+  background: #fff;
+  font-size: 13px;
+  font-family: Georgia, serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #555;
 }
 
-.explore-controls select {
-  width: 100%;
-  margin-bottom: 20px;
-  padding: 10px;
-  border-radius: 8px;
+.var-pill:hover {
+  border-color: #999;
+  color: #000;
 }
 
-.explore-chart {
-  flex: 2;
+.var-pill.active {
+  background: #111;
+  border-color: #111;
+  color: #fff;
 }
+
+/* HISTOGRAM WRAPPER */
+.histogram-wrap {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.07);
+  border: 1px solid #eee;
+}
+
+.histogram-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.chart-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+}
+
+.chart-badge {
+  font-size: 12px;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-family: Georgia, serif;
+}
+
+.badge-rural  { background: #d4f5e2; color: #1a7a40; }
+.badge-urban  { background: #dbeafe; color: #1d4ed8; }
+
+.chart-box {
+  height: 380px;
+  position: relative;
+}
+
+/* DARK MODE OVERRIDES */
+.dark .res-btn {
+  background: #1a1d24;
+  border-color: #333;
+  color: #aaa;
+}
+
+.dark .res-btn[data-res="Rural"].active {
+  background: #2d9e56;
+  border-color: #2d9e56;
+  color: #fff;
+}
+
+.dark .res-btn[data-res="Urban"].active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+.dark .var-pill {
+  background: #1a1d24;
+  border-color: #333;
+  color: #aaa;
+}
+
+.dark .var-pill.active {
+  background: #fff;
+  border-color: #fff;
+  color: #000;
+}
+
+.dark .histogram-wrap {
+  background: #1a1d24;
+  border-color: #2a2d34;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+}
+
+.dark .chart-title { color: #eee; }
+.dark .badge-rural  { background: #1a3d2a; color: #5ecf8a; }
+.dark .badge-urban  { background: #1e2f5e; color: #7aadff; }

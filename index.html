@@ -190,149 +190,141 @@
 
   <div class="explore-container">
 
-    <!-- CONTROLS -->
-    <div class="explore-controls">
+  <!-- RESIDENCE TOGGLE -->
+  <div class="residence-toggle">
+    <button class="res-btn active" data-res="Rural">🌾 Rural</button>
+    <button class="res-btn" data-res="Urban">🏙️ Urban</button>
+  </div>
 
-      <label><strong>Variable</strong></label>
-      <select id="variableSelect">
-        <option value="delivery">Institutional Delivery</option>
-        <option value="antenatal">Antenatal Care</option>
-        <option value="fertility">Adolescent Fertility</option>
-        <option value="financial">Financial Access</option>
-      </select>
+  <!-- VARIABLE PILLS -->
+  <div class="var-pills">
+    <button class="var-pill active" data-var="delivery">Institutional Delivery</button>
+    <button class="var-pill" data-var="antenatal">Antenatal Care</button>
+    <button class="var-pill" data-var="fertility">Adolescent Fertility</button>
+    <button class="var-pill" data-var="financial">Financial Access</button>
+    <button class="var-pill" data-var="imr">Infant Mortality (IMR)</button>
+  </div>
 
-      <label><strong>Residence</strong></label>
-      <select id="residenceSelect">
-        <option value="all">All</option>
-        <option value="Rural">Rural</option>
-        <option value="Urban">Urban</option>
-      </select>
-
+  <!-- CHART AREA -->
+  <div class="histogram-wrap">
+    <div class="histogram-header">
+      <span id="chartTitle" class="chart-title"></span>
+      <span id="chartBadge" class="chart-badge"></span>
     </div>
-
-    <!-- GRAPH -->
-    <div class="explore-chart">
-      <canvas id="chart"></canvas>
+    <div class="chart-box">
+      <canvas id="histChart"></canvas>
     </div>
-
   </div>
 </section>
 
 <script>
 let dataset = [];
-let chart;
+let histChart;
+let activeRes = "Rural";
+let activeVar = "delivery";
 
-// LOAD CSV
+const varLabels = {
+  delivery: "Institutional Delivery (%)",
+  antenatal: "Antenatal Care (%)",
+  fertility: "Adolescent Fertility Rate",
+  financial: "Financial Access (%)",
+  imr: "Infant Mortality Rate"
+};
+
+const varColors = {
+  Rural:  { bg: "rgba(52,168,83,0.75)",  border: "#2d9e56" },
+  Urban:  { bg: "rgba(66,133,244,0.75)", border: "#2563eb" }
+};
+
 async function loadData() {
   const res = await fetch("assets/Final_dataset.csv");
   const text = await res.text();
-
-  const rows = text.split("\n").slice(1);
-
-  dataset = rows.map(row => {
-    const cols = row.split(",");
-
+  dataset = text.split("\n").slice(1).map(row => {
+    const c = row.split(",");
     return {
-      state: cols[0],
-      residence: cols[1],
-      delivery: parseFloat(cols[2]),
-      antenatal: parseFloat(cols[3]),
-      financial: parseFloat(cols[4]),
-      fertility: parseFloat(cols[6]),
-      imr: parseFloat(cols[8])
+      state: c[0], residence: c[2],
+      delivery: parseFloat(c[3]), antenatal: parseFloat(c[4]),
+      financial: parseFloat(c[5]), fertility: parseFloat(c[7]),
+      imr: parseFloat(c[8])
     };
-  }).filter(d => !isNaN(d.imr));
+  }).filter(d => d.state && !isNaN(d.imr));
 }
 
-// REGRESSION FUNCTION
-function regression(data, xKey) {
-  let x = data.map(d => d[xKey]);
-  let y = data.map(d => d.imr);
+function drawHistogram() {
+  const filtered = dataset.filter(d => d.residence === activeRes);
+  const sorted   = [...filtered].sort((a, b) => b[activeVar] - a[activeVar]);
+  const labels   = sorted.map(d => d.state);
+  const values   = sorted.map(d => d[activeVar]);
+  const col      = varColors[activeRes];
 
-  let n = x.length;
-  let sumX = x.reduce((a,b)=>a+b,0);
-  let sumY = y.reduce((a,b)=>a+b,0);
-  let sumXY = x.map((v,i)=>v*y[i]).reduce((a,b)=>a+b,0);
-  let sumX2 = x.map(v=>v*v).reduce((a,b)=>a+b,0);
+  document.getElementById("chartTitle").textContent = varLabels[activeVar];
+  document.getElementById("chartBadge").textContent = activeRes;
+  document.getElementById("chartBadge").className =
+    "chart-badge badge-" + activeRes.toLowerCase();
 
-  let slope = (n*sumXY - sumX*sumY) / (n*sumX2 - sumX*sumX);
-  let intercept = (sumY - slope*sumX)/n;
+  if (histChart) histChart.destroy();
 
-  return {slope, intercept};
-}
-
-// DRAW CHART
-function drawChart() {
-  let variable = document.getElementById("variableSelect").value;
-  let residence = document.getElementById("residenceSelect").value;
-
-  let data = dataset;
-
-  if (residence !== "all") {
-    data = data.filter(d => d.residence === residence);
-  }
-
-  const points = data.map(d => ({
-    x: d[variable],
-    y: d.imr,
-    state: d.state
-  }));
-
-  // regression line
-  const {slope, intercept} = regression(data, variable);
-
-  let minX = Math.min(...points.map(p=>p.x));
-  let maxX = Math.max(...points.map(p=>p.x));
-
-  const line = [
-    {x: minX, y: slope*minX + intercept},
-    {x: maxX, y: slope*maxX + intercept}
-  ];
-
-  if (chart) chart.destroy();
-
-  chart = new Chart(document.getElementById("chart"), {
-    type: "scatter",
+  histChart = new Chart(document.getElementById("histChart"), {
+    type: "bar",
     data: {
-      datasets: [
-        {
-          label: "States",
-          data: points,
-          pointRadius: 5
-        },
-        {
-          label: "Trend",
-          data: line,
-          type: "line",
-          fill: false
-        }
-      ]
+      labels,
+      datasets: [{
+        label: varLabels[activeVar],
+        data: values,
+        backgroundColor: col.bg,
+        borderColor: col.border,
+        borderWidth: 1.5,
+        borderRadius: 5,
+        borderSkipped: false
+      }]
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 500, easing: "easeInOutQuart" },
       plugins: {
+        legend: { display: false },
         tooltip: {
           callbacks: {
-            label: function(context) {
-              return context.raw.state + 
-                " (x: " + context.raw.x + ", IMR: " + context.raw.y + ")";
-            }
+            title: ctx => ctx[0].label,
+            label: ctx => " " + varLabels[activeVar] + ": " + ctx.parsed.y.toFixed(1)
           }
         }
       },
       scales: {
-        x: { title: { display: true, text: variable }},
-        y: { title: { display: true, text: "IMR" }}
+        x: {
+          ticks: { maxRotation: 45, font: { size: 11 } },
+          grid: { display: false }
+        },
+        y: {
+          beginAtZero: true,
+          title: { display: true, text: varLabels[activeVar], font: { size: 12 } },
+          grid: { color: "rgba(0,0,0,0.06)" }
+        }
       }
     }
   });
 }
 
-// INIT
-loadData().then(drawChart);
+loadData().then(drawHistogram);
 
-// EVENTS
-document.getElementById("variableSelect").onchange = drawChart;
-document.getElementById("residenceSelect").onchange = drawChart;
+document.querySelectorAll(".res-btn").forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll(".res-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeRes = btn.dataset.res;
+    drawHistogram();
+  };
+});
+
+document.querySelectorAll(".var-pill").forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll(".var-pill").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeVar = btn.dataset.var;
+    drawHistogram();
+  };
+});
 </script>
 
         <!-- REFERENCES -->
