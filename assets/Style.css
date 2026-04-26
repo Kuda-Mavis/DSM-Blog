@@ -335,7 +335,7 @@ figcaption {
   }
 }
 #explore {
-  padding: 50px 0;
+  padding: 0;
 }
 
 /* RESIDENCE TOGGLE */
@@ -363,10 +363,10 @@ figcaption {
 }
 
 .res-btn[data-res="Rural"].active {
-  background: #2d9e56;
-  border-color: #2d9e56;
+  background: #7c3aed;
+  border-color: #7c3aed;
   color: #fff;
-  box-shadow: 0 4px 14px rgba(45, 158, 86, 0.35);
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
 }
 
 .res-btn[data-res="Urban"].active {
@@ -437,8 +437,8 @@ figcaption {
 }
 
 .badge-rural {
-  background: #d4f5e2;
-  color: #1a7a40;
+  background: #ede9fe;
+  color: #5b21b6;
 }
 .badge-urban {
   background: #dbeafe;
@@ -545,8 +545,8 @@ figcaption {
 }
 
 .dark .res-btn[data-res="Rural"].active {
-  background: #2d9e56;
-  border-color: #2d9e56;
+  background: #7c3aed;
+  border-color: #7c3aed;
   color: #fff;
 }
 
@@ -578,8 +578,8 @@ figcaption {
   color: #eee;
 }
 .dark .badge-rural {
-  background: #1a3d2a;
-  color: #5ecf8a;
+  background: #2e1a5e;
+  color: #c4b5fd;
 }
 .dark .badge-urban {
   background: #1e2f5e;

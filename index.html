@@ -124,40 +124,39 @@
         examine how variations in access and socioeconomic conditions are associated 
         with differences in maternal health.
         </p>
+        </section>
 
         <!-- ANALYSIS -->
-          <section id="analysis">
-            <h2>Analysis</h2>
+        <section id="analysis">
+          <h2>Analysis</h2>
 
-            <p>
-              The data reveals a clear pattern that better access to healthcare is associated with improved outcomes.
-              States with higher institutional delivery rates and stronger antenatal care coverage consistently show lower
-              infant mortality rates (IMR), suggesting that access to formal healthcare services plays a key role in
-              maternal and child health.
-            </p>
+          <p>
+            The data reveals a clear pattern that better access to healthcare is associated with improved outcomes.
+            States with higher institutional delivery rates and stronger antenatal care coverage consistently show lower
+            infant mortality rates (IMR), suggesting that access to formal healthcare services plays a key role in
+            maternal and child health.
+          </p>
 
-            <p>
-              This relationship, however, is not uniform across all variables. Financial access does not show a strong or
-              consistent relationship with IMR, indicating that having financial resources alone does not necessarily
-              translate into better health outcomes. In contrast, demographic factors such as adolescent fertility are
-              associated with higher IMR, pointing to underlying social and behavioral risks that influence outcomes.
-            </p>
+          <p>
+            This relationship, however, is not uniform across all variables. Financial access does not show a strong or
+            consistent relationship with IMR, indicating that having financial resources alone does not necessarily
+            translate into better health outcomes. In contrast, demographic factors such as adolescent fertility are
+            associated with higher IMR, pointing to underlying social and behavioral risks that influence outcomes.
+          </p>
 
-            <p>
-              There are also clear differences across regions. Some states perform significantly better than others,
-              reflecting variations in healthcare infrastructure, accessibility, and broader socioeconomic conditions.
-              These disparities suggest that improvements are not evenly distributed and that certain populations remain
-              more vulnerable.
-            </p>
+          <p>
+            There are also clear differences across regions. Some states perform significantly better than others,
+            reflecting variations in healthcare infrastructure, accessibility, and broader socioeconomic conditions.
+            These disparities suggest that improvements are not evenly distributed and that certain populations remain
+            more vulnerable.
+          </p>
 
-            <p>
-              Overall, the analysis shows that while improving healthcare access is essential, it must be supported by
-              broader social and structural changes. Maternal and child health outcomes are shaped by a combination of
-              healthcare availability, demographic factors, and regional inequalities.
-            </p>
-
-          </section>
-       
+          <p>
+            Overall, the analysis shows that while improving healthcare access is essential, it must be supported by
+            broader social and structural changes. Maternal and child health outcomes are shaped by a combination of
+            healthcare availability, demographic factors, and regional inequalities.
+          </p>
+        </section>
 
         <!-- WHY -->
         <section id="why">
@@ -180,14 +179,11 @@
             statistics; it is about ensuring that all individuals, regardless of where they live, have an equal
             chance at safe and healthy outcomes.
           </p>
-
         </section>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<section id="explore">
+        <section id="explore">
   <h2>Explore the Data</h2>
-  <p style="color:#888;font-size:14px;margin-top:-10px;">Select a residence type and indicator to see how states compare.</p>
+  <p style="color:#222;font-size:14px;margin-top:-10px;">Select a residence type and indicator to see how states compare.</p>
 
   <!-- RESIDENCE TOGGLE -->
   <div class="residence-toggle">
@@ -263,9 +259,10 @@
       <canvas id="histChart"></canvas>
     </div>
   </div>
-</section>
+        </section>
 
-<script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
 let dataset = [];
 let histChart;
 let activeRes = "Rural";
@@ -280,7 +277,7 @@ const varLabels = {
 };
 
 const varColors = {
-  Rural:  { bg: "rgba(52,168,83,0.65)",  border: "#2d9e56" },
+  Rural:  { bg: "rgba(124,58,237,0.55)",  border: "#7c3aed" },
   Urban:  { bg: "rgba(66,133,244,0.65)", border: "#2563eb" }
 };
 
