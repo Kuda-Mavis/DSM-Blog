@@ -186,9 +186,8 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <section id="explore">
-  <h2>Explore Relationships</h2>
-
-  <div class="explore-container">
+  <h2>Explore the Data</h2>
+  <p style="color:#888;font-size:14px;margin-top:-10px;">Select a residence type and indicator to see how states compare.</p>
 
   <!-- RESIDENCE TOGGLE -->
   <div class="residence-toggle">
@@ -205,11 +204,60 @@
     <button class="var-pill" data-var="imr">Infant Mortality (IMR)</button>
   </div>
 
+  <!-- STATS STRIP -->
+  <div class="stats-strip" id="statsStrip">
+    <div class="stat-card" id="stat-min">
+      <span class="stat-icon">↓</span>
+      <div>
+        <div class="stat-label">Min</div>
+        <div class="stat-value" id="val-min">—</div>
+        <div class="stat-state" id="state-min"></div>
+      </div>
+    </div>
+    <div class="stat-card" id="stat-max">
+      <span class="stat-icon">↑</span>
+      <div>
+        <div class="stat-label">Max</div>
+        <div class="stat-value" id="val-max">—</div>
+        <div class="stat-state" id="state-max"></div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">≈</span>
+      <div>
+        <div class="stat-label">Mean</div>
+        <div class="stat-value" id="val-mean">—</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">~</span>
+      <div>
+        <div class="stat-label">Median</div>
+        <div class="stat-value" id="val-median">—</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">σ</span>
+      <div>
+        <div class="stat-label">Std Dev</div>
+        <div class="stat-value" id="val-std">—</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">↔</span>
+      <div>
+        <div class="stat-label">Range</div>
+        <div class="stat-value" id="val-range">—</div>
+      </div>
+    </div>
+  </div>
+
   <!-- CHART AREA -->
   <div class="histogram-wrap">
     <div class="histogram-header">
       <span id="chartTitle" class="chart-title"></span>
       <span id="chartBadge" class="chart-badge"></span>
+      <span class="chart-hint">🟥 min &nbsp; 🟩 max</span>
     </div>
     <div class="chart-box">
       <canvas id="histChart"></canvas>
@@ -232,8 +280,8 @@ const varLabels = {
 };
 
 const varColors = {
-  Rural:  { bg: "rgba(52,168,83,0.75)",  border: "#2d9e56" },
-  Urban:  { bg: "rgba(66,133,244,0.75)", border: "#2563eb" }
+  Rural:  { bg: "rgba(52,168,83,0.65)",  border: "#2d9e56" },
+  Urban:  { bg: "rgba(66,133,244,0.65)", border: "#2563eb" }
 };
 
 async function loadData() {
@@ -250,6 +298,32 @@ async function loadData() {
   }).filter(d => d.state && !isNaN(d.imr));
 }
 
+function calcStats(values) {
+  const n = values.length;
+  const sorted = [...values].sort((a, b) => a - b);
+  const mean = values.reduce((a, b) => a + b, 0) / n;
+  const median = n % 2 === 0
+    ? (sorted[n/2 - 1] + sorted[n/2]) / 2
+    : sorted[Math.floor(n/2)];
+  const std = Math.sqrt(values.reduce((s, v) => s + (v - mean) ** 2, 0) / n);
+  return { min: sorted[0], max: sorted[n-1], mean, median, std, range: sorted[n-1] - sorted[0] };
+}
+
+function updateStats(filtered, values) {
+  const s = calcStats(values);
+  const minRow = filtered.find(d => d[activeVar] === s.min);
+  const maxRow = filtered.find(d => d[activeVar] === s.max);
+
+  document.getElementById("val-min").textContent    = s.min.toFixed(1);
+  document.getElementById("val-max").textContent    = s.max.toFixed(1);
+  document.getElementById("val-mean").textContent   = s.mean.toFixed(1);
+  document.getElementById("val-median").textContent = s.median.toFixed(1);
+  document.getElementById("val-std").textContent    = s.std.toFixed(1);
+  document.getElementById("val-range").textContent  = s.range.toFixed(1);
+  document.getElementById("state-min").textContent  = minRow ? minRow.state : "";
+  document.getElementById("state-max").textContent  = maxRow ? maxRow.state : "";
+}
+
 function drawHistogram() {
   const filtered = dataset.filter(d => d.residence === activeRes);
   const sorted   = [...filtered].sort((a, b) => b[activeVar] - a[activeVar]);
@@ -257,10 +331,25 @@ function drawHistogram() {
   const values   = sorted.map(d => d[activeVar]);
   const col      = varColors[activeRes];
 
+  const minVal = Math.min(...values);
+  const maxVal = Math.max(...values);
+
+  const bgColors = values.map(v => {
+    if (v === maxVal) return "rgba(34,197,94,0.85)";
+    if (v === minVal) return "rgba(239,68,68,0.85)";
+    return col.bg;
+  });
+  const borderColors = values.map(v => {
+    if (v === maxVal) return "#16a34a";
+    if (v === minVal) return "#dc2626";
+    return col.border;
+  });
+
   document.getElementById("chartTitle").textContent = varLabels[activeVar];
   document.getElementById("chartBadge").textContent = activeRes;
-  document.getElementById("chartBadge").className =
-    "chart-badge badge-" + activeRes.toLowerCase();
+  document.getElementById("chartBadge").className = "chart-badge badge-" + activeRes.toLowerCase();
+
+  updateStats(filtered, values);
 
   if (histChart) histChart.destroy();
 
@@ -271,8 +360,8 @@ function drawHistogram() {
       datasets: [{
         label: varLabels[activeVar],
         data: values,
-        backgroundColor: col.bg,
-        borderColor: col.border,
+        backgroundColor: bgColors,
+        borderColor: borderColors,
         borderWidth: 1.5,
         borderRadius: 5,
         borderSkipped: false
@@ -287,7 +376,11 @@ function drawHistogram() {
         tooltip: {
           callbacks: {
             title: ctx => ctx[0].label,
-            label: ctx => " " + varLabels[activeVar] + ": " + ctx.parsed.y.toFixed(1)
+            label: ctx => {
+              const v = ctx.parsed.y;
+              const tag = v === maxVal ? " ↑ highest" : v === minVal ? " ↓ lowest" : "";
+              return " " + varLabels[activeVar] + ": " + v.toFixed(1) + tag;
+            }
           }
         }
       },
@@ -331,13 +424,40 @@ document.querySelectorAll(".var-pill").forEach(btn => {
         <section id="references">
           <h2>Works Cited</h2>
           <p>
-            Maternal health reflects both policy effectiveness and deeper social
-            structures. If access improves but outcomes do not, it suggests
-            underlying inequalities.
+            National Institution for Transforming India (NITI Aayog). 
+            <i>National Family Health Survey (NFHS-4 & NFHS-5) : State-wise Data.</i> 
+            Accessed April 26, 2026. Link : 
+            <a href="https://ndap.niti.gov.in/dataset/6821">https://ndap.niti.gov.in/dataset/6821</a>
           </p>
+
           <p>
-            Understanding these relationships helps identify where interventions
-            will have the greatest impact.
+            National Institution for Transforming India (NITI Aayog). 
+            <i>Healthcare Access: Sample Registration System (SRS) Statistical Report.</i> 
+            Accessed April 26, 2026. Link : 
+            <a href="https://ndap.niti.gov.in/collection/Sample%20Registration%20System%20(SRS)%20-%20Statistical%20Report/358">
+              https://ndap.niti.gov.in/collection/Sample%20Registration%20System%20(SRS)%20-%20Statistical%20Report/358
+            </a>
+          </p>
+
+          <p>
+            National Institution for Transforming India (NITI Aayog). 
+            <i>Birth Rate, Death Rate, and Infant Mortality Rate by National Sample Survey Office (NSSO) Natural Division.</i> 
+            Accessed April 26, 2026. Link : 
+            <a href="https://ndap.niti.gov.in/dataset/9343">https://ndap.niti.gov.in/dataset/9343</a>
+          </p>
+
+          <p>
+            National Institution for Transforming India (NITI Aayog). 
+            <i>Child (Aged 0–4 Years) and Infant Mortality Indicators.</i> 
+            Accessed April 26, 2026. Link : 
+            <a href="https://ndap.niti.gov.in/dataset/9355">https://ndap.niti.gov.in/dataset/9355</a>
+          </p>
+
+          <p>
+            National Institution for Transforming India (NITI Aayog). 
+            <i>Fertility Indicators – State-wise.</i> 
+            Accessed April 26, 2026. Link : 
+            <a href="https://ndap.niti.gov.in/dataset/9442">https://ndap.niti.gov.in/dataset/9442</a>
           </p>
         </section>
       </main>
