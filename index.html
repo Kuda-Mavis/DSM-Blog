@@ -21,8 +21,9 @@
         <a href="#problem">Problem</a>
         <a href="#methodology">Methodology</a>
         <a href="#analysis">Analysis</a>
-        <a href="#why">Why It Matters</a>
-        <a href="#explore">DIY Exploration</a>
+        <a href="#explore">Explore the Data</a>
+        <a href="#scenario">Test a Scenario</a>
+        <a href="#summary">Summary</a>
         <a href="#references">References</a>
       </nav>
 
@@ -150,36 +151,8 @@
             These disparities suggest that improvements are not evenly distributed and that certain populations remain
             more vulnerable.
           </p>
-
-          <p>
-            Overall, the analysis shows that while improving healthcare access is essential, it must be supported by
-            broader social and structural changes. Maternal and child health outcomes are shaped by a combination of
-            healthcare availability, demographic factors, and regional inequalities.
-          </p>
         </section>
 
-        <!-- WHY -->
-        <section id="why">
-          <h2>Why This Matters</h2>
-
-          <p>
-            Maternal health is not just a healthcare issue. It reflects how fairly resources, opportunities,
-            and services are distributed across society. When some regions consistently experience worse outcomes,
-            it points to deeper structural inequalities in access to care, education, and basic infrastructure.
-            The patterns in this data show that improving access to healthcare can significantly reduce risks,
-            but access alone is not enough, as social factors such as early childbearing and regional disparities
-            continue to influence outcomes.
-          </p>
-
-          <p>
-            Understanding these relationships helps identify where interventions will have the greatest impact.
-            It allows policymakers and stakeholders to focus resources on the most vulnerable populations,
-            particularly in rural areas, and design solutions that combine healthcare access with broader
-            social support systems. Ultimately, improving maternal and child health is about more than reducing
-            statistics; it is about ensuring that all individuals, regardless of where they live, have an equal
-            chance at safe and healthy outcomes.
-          </p>
-        </section>
 
         <section id="explore">
               <h2>Explore the Data</h2>
@@ -416,6 +389,128 @@
               };
             });
             </script>
+
+        <!-- SCENARIO -->
+        <section id="scenario">
+          <h2>Test a Scenario</h2>
+          <p>Adjust the sliders below to see how shifts in healthcare access and demographic conditions are associated with changes in infant mortality across Indian states.</p>
+
+          <div class="scenario-card">
+
+            <div class="scenario-sliders">
+
+              <div class="slider-row">
+                <div class="slider-meta">
+                  <span class="slider-label">Institutional Delivery</span>
+                  <span class="slider-value" id="val-delivery">90%</span>
+                </div>
+                <input type="range" class="scenario-range" id="sl-delivery" min="60" max="100" value="90">
+                <div class="slider-ends"><span>60%</span><span>100%</span></div>
+              </div>
+
+              <div class="slider-row">
+                <div class="slider-meta">
+                  <span class="slider-label">Antenatal Care</span>
+                  <span class="slider-value" id="val-antenatal">70%</span>
+                </div>
+                <input type="range" class="scenario-range" id="sl-antenatal" min="20" max="90" value="70">
+                <div class="slider-ends"><span>20%</span><span>90%</span></div>
+              </div>
+
+              <div class="slider-row">
+                <div class="slider-meta">
+                  <span class="slider-label">Adolescent Fertility</span>
+                  <span class="slider-value" id="val-fertility2">30</span>
+                </div>
+                <input type="range" class="scenario-range" id="sl-fertility" min="10" max="80" value="30">
+                <div class="slider-ends"><span>10</span><span>80</span></div>
+              </div>
+
+            </div>
+
+            <div class="scenario-result">
+              <div class="result-label">Estimated IMR</div>
+              <div class="result-value" id="imr-result">15.9</div>
+              <div class="result-sub">infant deaths per 1,000 live births</div>
+              <div class="result-bar-wrap">
+                <div class="result-bar-track">
+                  <div class="result-bar-fill" id="imr-bar"></div>
+                </div>
+                <div class="result-bar-ends"><span>0</span><span>50</span></div>
+              </div>
+              <div class="result-note" id="imr-note"></div>
+            </div>
+
+          </div>
+
+          <p class="scenario-footnote">This tool uses a multiple linear regression model trained on NFHS-5 state-level data across India. It estimates how changes in three key healthcare indicators, institutional delivery rates, antenatal care coverage, and adolescent fertility, are associated with infant mortality rates (IMR). Each slider adjusts one variable while holding the others constant, letting you explore how different combinations of conditions relate to predicted outcomes. The model explains roughly 30% of the variation in IMR (R² = 0.30), meaning healthcare access is an important but not the only factor at play. Results are illustrative estimates intended to support understanding, not clinical or policy forecasts.</p>
+        </section>
+
+        <script>
+          const intercept  =  44.5669;
+          const bDelivery  = -0.2535;
+          const bAntenatal = -0.0950;
+          const bFertility =  0.0247;
+
+          function updateScenario() {
+            const d = +document.getElementById("sl-delivery").value;
+            const a = +document.getElementById("sl-antenatal").value;
+            const f = +document.getElementById("sl-fertility").value;
+
+            document.getElementById("val-delivery").textContent  = d + "%";
+            document.getElementById("val-antenatal").textContent = a + "%";
+            document.getElementById("val-fertility").textContent = f;
+
+            const imr = Math.max(0, intercept + bDelivery*d + bAntenatal*a + bFertility*f);
+            document.getElementById("imr-result").textContent = imr.toFixed(1);
+
+            const pct = Math.min(imr / 50 * 100, 100);
+            document.getElementById("imr-bar").style.width = pct + "%";
+            document.getElementById("imr-bar").style.background =
+              imr < 12 ? "#16a34a" : imr < 20 ? "#f59e0b" : "#dc2626";
+
+            const note = imr < 12 ? "✦ Low risk — strong healthcare access"
+                       : imr < 20 ? "◆ Moderate risk — room for improvement"
+                       :            "▲ High risk — urgent intervention needed";
+            document.getElementById("imr-note").textContent = note;
+            document.getElementById("imr-note").className =
+              "result-note " + (imr < 12 ? "note-low" : imr < 20 ? "note-mid" : "note-high");
+          }
+
+          ["sl-delivery","sl-antenatal","sl-fertility"].forEach(id => {
+            document.getElementById(id).addEventListener("input", updateScenario);
+          });
+
+          updateScenario();
+        </script>
+
+        <!-- SUMMARY -->
+        <section id="summary">
+          <h2>Summary</h2>
+          <p>
+            This study set out to understand how healthcare access shapes maternal and child health outcomes across Indian states.
+            The data consistently shows that states with higher institutional delivery rates and stronger antenatal care coverage
+            tend to have lower infant mortality, while high adolescent fertility remains a persistent risk factor.
+            These patterns hold across both rural and urban populations, though the scale of the gaps between them
+            points to structural inequalities that go beyond healthcare alone.
+            States like Kerala and Tamil Nadu demonstrate that sustained investment in maternal health infrastructure
+            can produce outcomes that stand apart from the national average, offering a reference point for what is achievable.
+            At the other end of the spectrum, states such as Madhya Pradesh and Uttar Pradesh continue to face
+            significantly higher infant mortality rates, underscoring how much ground remains to be covered.
+          </p>
+          <p>
+            The regression model reinforces what the visualisations suggest: improving access to safe childbirth and prenatal
+            care has a measurable association with better outcomes, but no single indicator tells the full story.
+            Regional disparities, socioeconomic conditions, and demographic factors all interact in ways that
+            cannot be reduced to one variable.
+            What the data makes clear is that progress is possible, uneven, and deeply tied to how resources and opportunities are distributed across the country.
+            Addressing maternal and child health at scale will require not just expanding services, but ensuring those services
+            reach the populations that have historically been left furthest behind.
+            Ultimately, maternal health is an equity issue as much as a healthcare one, and the data makes clear
+            that ensuring every individual has an equal chance at a safe outcome depends on how fairly resources,
+            opportunities, and services are distributed across society.
+          </p>
+        </section>
 
         <!-- REFERENCES -->
         <section id="references">
