@@ -420,7 +420,7 @@
               <div class="slider-row">
                 <div class="slider-meta">
                   <span class="slider-label">Adolescent Fertility</span>
-                  <span class="slider-value" id="val-fertility2">30</span>
+                  <span class="slider-value" id="val-fertility">30</span>
                 </div>
                 <input type="range" class="scenario-range" id="sl-fertility" min="10" max="80" value="30">
                 <div class="slider-ends"><span>10</span><span>80</span></div>
@@ -447,10 +447,10 @@
         </section>
 
         <script>
-          const intercept  =  44.5669;
-          const bDelivery  = -0.2535;
-          const bAntenatal = -0.0950;
-          const bFertility =  0.0247;
+          const intercept  =  44.57;
+          const bDelivery  = -0.253;
+          const bAntenatal = -0.095;
+          const bFertility =  0.025;
 
           function updateScenario() {
             const d = +document.getElementById("sl-delivery").value;
