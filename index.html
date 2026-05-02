@@ -17,13 +17,26 @@
       <!-- TABLE OF CONTENTS -->
       <nav class="toc">
         <h3>Contents</h3>
+
         <a href="#intro">Introduction</a>
-        <a href="#problem">Problem</a>
-        <a href="#methodology">Methodology</a>
-        <a href="#analysis">Analysis</a>
-        <a href="#explore">Explore the Data</a>
-        <a href="#scenario">Test a Scenario</a>
-        <a href="#summary">Summary</a>
+        <a href="#problem">Problem Statement</a>
+
+        <a href="#methodology">Data and Methodology</a>
+        <a href="#data" class="toc-sub">Data Sources and Preparation</a>
+        <a href="#approach" class="toc-sub">Analytical Approach</a>
+
+        <a href="#analysis">Exploratory Data Analysis</a>
+        <a href="#correlation" class="toc-sub">Correlation Analysis</a>
+        <a href="#regression" class="toc-sub">Regression Analysis</a>
+        <a href="#evaluation" class="toc-sub">Model Evaluation</a>
+
+        <a href="#explore">Interactive Data Exploration</a>
+        <a href="#scenario" class="toc-sub">Scenario Simulation</a>
+
+        <a href="#insights">Key Insights</a>
+        <a href="#limitations">Limitations</a>
+
+        <a href="#summary">Conclusion</a>
         <a href="#references">References</a>
       </nav>
 
@@ -34,42 +47,31 @@
           <h1 class="title-main">Maternal Health in India</h1>
           <h1>Regional Inequalities and the Role of Healthcare Access</h1>
           <p class="author">Kudakwashe Mavis Chakanyuka</p>
-          <p class="meta">April 2026</p>
+          <p class="meta"> 26 April 2026</p>
         </header>
 
         <!-- INTRO -->
         <section id="intro">
           <h2>Introduction</h2>
-
           <p>
-            Maternal health is often discussed using numbers such as mortality
-            rates, institutional delivery percentages, and antenatal care
-            coverage. These measures are important, but they do not always show
-            the full picture. They often hide deeper issues such as unequal
-            access to care, differences in healthcare facilities, and the
-            everyday experiences of women in different parts of the country. In
-            a country as large and diverse as India, these differences are not
-            the same everywhere. Health outcomes change from one state to
-            another and also differ between rural and urban areas, and they are
-            influenced by income levels and social conditions.
+            Maternal health remains a critical concern in many parts of the world, particularly in developing countries
+            where disparities in healthcare access and socioeconomic conditions significantly influence outcomes.
+            Despite improvements in medical infrastructure and policy interventions, maternal mortality and inadequate
+            access to essential maternal healthcare services continue to pose serious challenges. Key factors such as 
+            availability of skilled healthcare personnel, institutional delivery services, antenatal care, and broader 
+            socioeconomic conditions play a crucial role in determining maternal health outcomes, and their combined 
+            influence varies significantly across regions, countries, and communities.
           </p>
-
           <p>
-            Access to healthcare has improved over time, many gaps still remain,
-          and these are connected to larger social and structural conditions.
-          To understand maternal health, it is important to look
-          beyond single indicators and study how access to healthcare,
-          education, and living conditions work together to shape outcomes. It
-          also requires understanding how these factors vary across regions
-          and population groups, and why some areas continue to face greater
-          challenges than others. Patterns can be examined using
-          state-level indicators such as institutional delivery, antenatal
-          care, and infant mortality rates to better understand regional
-          differences in outcomes.
-          </p>
-
+            This project examines how differences in healthcare access and socioeconomic conditions are associated with
+            variations in maternal health outcomes across states in India. Using state-level data on institutional
+            delivery rates, antenatal care coverage, financial access, anaemia prevalence, fertility indicators, and
+            infant mortality rate (IMR), the study aims to identify patterns and regional disparities. The objective 
+            is not to establish causation, but to explore relationships between these indicators and understand how 
+            variations in access and social conditions correspond to differences in maternal health outcomes across 
+            diverse population groups, settings, and contexts, over time periods.
           <p>
-            <strong>How much does access shape maternal health outcomes?</strong>
+            <strong>How much does access shape maternal health outcomes across Indian states?</strong>
           </p>
         </section>
 
@@ -89,73 +91,183 @@
 
         <section id="problem">
           <h2>Problem Statement</h2>
-
-        <p> 
-          While access to services has increased, the benefits are not evenly 
-        distributed, and some regions continue to experience poorer outcomes. 
-        These differences are influenced by factors such as healthcare availability, 
-        education levels, socioeconomic conditions, and regional inequalities in 
-        infrastructure and resources. The core problem is not just limited access, 
-        but a lack of understanding of how these factors interact to shape maternal 
-        health outcomes across regions. Using state-level indicators such as 
-        institutional delivery, antenatal care, financial access, and infant mortality 
-        rates, this study examines how these factors are associated with variations 
-        in outcomes across states. Without understanding these relationships, it 
-        becomes difficult to identify where interventions are most needed and how 
-        resources can be effectively allocated to reduce disparities.
-        </p>
+          <p>
+            Maternal health outcomes are shaped by a combination of healthcare access, socioeconomic conditions,
+            and demographic factors. While access to services has increased across India, the benefits are not evenly
+            distributed, and some regions continue to experience poorer outcomes. These differences are influenced
+            by factors such as healthcare availability, education levels, socioeconomic conditions, and regional
+            inequalities in infrastructure and resources. The core problem is not just limited access, but a lack
+            of understanding of how these factors interact to shape maternal health outcomes across regions. Using
+            state-level indicators such as institutional delivery, antenatal care, financial access, and infant
+            mortality rates, this study examines how these factors are associated with variations in outcomes across
+            states. Without understanding these relationships, it becomes difficult to identify where interventions
+            are most needed and how resources can be effectively allocated to reduce disparities and improve outcomes.
+          </p>
         </section>
 
         <section id="methodology">
-        <h2>Methodology</h2>
+          <h2>Data and Methodology</h2>
+          <p>
+            This project applies concepts from data science and database systems to study maternal health outcomes. 
+            Data is collected from multiple sources using APIs and combined using common fields such as state name, 
+            allowing datasets to be connected and analysed together. The analysis uses exploratory data analysis, 
+            correlation analysis, and regression modelling to identify patterns and quantify relationships between 
+            healthcare access indicators and infant mortality rate. The findings aim to support data-driven insights 
+            that can inform policy decisions and targeted public health interventions.
+          </p>
+        </section>
 
-        <p>
-        This project applies basic concepts from data science and database systems to study 
-        maternal health outcomes. Data is collected from multiple sources using APIs and 
-        combined using common fields such as state, allowing datasets to be connected and 
-        analyzed together. The NFHS dataset is filtered to retain relevant indicators such 
-        as institutional delivery, antenatal care, financial access, anaemia, and fertility, 
-        while the mortality dataset is used to extract infant mortality rate (IMR) as the 
-        primary outcome variable. The data is cleaned, standardized, and aggregated to 
-        ensure one observation per state before merging into a unified dataset. The analysis uses 
-        exploratory data analysis and visualization to identify patterns and trends in 
-        maternal health indicators, and examines relationships between healthcare access 
-        and health outcomes using correlation analysis, while recognizing that correlation 
-        does not imply causation. Indicators are used to compare states and 
-        examine how variations in access and socioeconomic conditions are associated 
-        with differences in maternal health.
-        </p>
+        <section id="data">
+          <details class="subsection">
+            <summary><h3>Data Sources and Preparation</h3></summary>
+          <p>
+            The primary datasets are sourced from the NDAP API and include the National Family Health Survey (NFHS) 
+            providing state-level indicators on institutional delivery, antenatal care, financial access, anaemia, 
+            and adolescent fertility; the Sample Registration System (SRS) providing healthcare access indicators; 
+            NSSO and SRS mortality data providing infant mortality rate (IMR) as the primary outcome variable; and 
+            state-level fertility indicators providing demographic context. These datasets are integrated to enable a 
+            comprehensive, multi-dimensional analysis that captures both healthcare system factors and underlying demographic 
+            variations influencing maternal and child health outcomes.
+          <br>
+          <br>
+            Data cleaning was carried out using Python. The NFHS dataset was filtered to retain only relevant indicators, 
+            column names were standardised, and state names were cleaned to enable accurate merging. The mortality dataset 
+            was filtered to extract IMR, with multiple entries per state aggregated by mean. Missing values were removed 
+            where key variables were unavailable, and duplicate entries were eliminated. The cleaned datasets were merged 
+            on state name, producing a unified dataset of 46 state-level observations with 9 variables suitable for analysis. 
+            Additional validation checks were performed to ensure consistency across variables and confirm the integrity of 
+            the merged dataset before proceeding to analysis.
+          </p>
+                  </details>
+        </section>
+
+        <section id="approach">
+          <details class="subsection">
+            <summary><h3>Analytical Approach</h3></summary>
+          <p>
+            The cleaned dataset was stored in a relational SQLite database, organised as a single table where each 
+            row represents a unique state and residence category. SQL queries were used to extract aggregated insights, 
+            compare indicators across rural and urban populations, and identify states with the highest and lowest outcomes. 
+            This structure allowed for straightforward querying and comparison without requiring complex joins. The single-table 
+            design reflected the aggregated nature of the dataset, where each observation represents a unique combination of state 
+            and residence type, making it well-suited to the scope and scale of this analysis. Indexes were also applied to key fields 
+            such as state and residence category to improve query efficiency and performance.
+          <br>
+          <br>
+            To formally examine relationships between variables, Pearson correlation coefficients were calculated to assess the strength 
+            and direction of linear associations between healthcare indicators and IMR. A multiple linear regression model was then 
+            developed to quantify these relationships, using institutional delivery, antenatal care, and adolescent fertility as 
+            explanatory variables. Coefficients were estimated using Ordinary Least Squares (OLS), which minimises the sum of squared 
+            residuals to produce the best linear fit to the observed data. All findings are interpreted as associations rather than causal 
+            relationships, given the cross-sectional nature of the dataset. Consequently, the analysis does not capture temporal dynamics 
+            or fully control for potential confounding factors that may influence the observed relationships.
+          </p>
+                  </details>
         </section>
 
         <!-- ANALYSIS -->
         <section id="analysis">
-          <h2>Analysis</h2>
-
+          <h2>Exploratory Data Analysis</h2>
           <p>
-            The data reveals a clear pattern that better access to healthcare is associated with improved outcomes.
-            States with higher institutional delivery rates and stronger antenatal care coverage consistently show lower
-            infant mortality rates (IMR), suggesting that access to formal healthcare services plays a key role in
-            maternal and child health.
+            The final merged dataset consists of 46 observations and 9 variables representing state-level indicators
+            across rural and urban populations. Initial inspection shows no missing values, indicating the data is
+            complete and suitable for analysis. Summary statistics reveal variation across states in key indicators
+            such as institutional delivery rates, antenatal care coverage, and IMR, confirming the presence of
+            regional differences.
+            The dataset covers 23 states across both rural and urban residence categories, providing a broad geographic basis for comparison.
+            Descriptive statistics show that IMR ranges from a low of 4.22 in Kerala Urban to a high of 29.22 in Madhya Pradesh Rural, 
+            illustrating the scale of inequality present in the data. This wide range highlights substantial disparities in healthcare 
+            access and outcomes between different regions and residence types, reflecting underlying differences in infrastructure, 
+            resource allocation, and socioeconomic conditions that influence maternal and child health.
           </p>
-
           <p>
-            This relationship, however, is not uniform across all variables. Financial access does not show a strong or
-            consistent relationship with IMR, indicating that having financial resources alone does not necessarily
-            translate into better health outcomes. In contrast, demographic factors such as adolescent fertility are
-            associated with higher IMR, pointing to underlying social and behavioral risks that influence outcomes.
-          </p>
-
-          <p>
-            There are also clear differences across regions. Some states perform significantly better than others,
-            reflecting variations in healthcare infrastructure, accessibility, and broader socioeconomic conditions.
-            These disparities suggest that improvements are not evenly distributed and that certain populations remain
-            more vulnerable.
+            Institutional delivery rates exhibit a clear left-skewed distribution, with most values concentrated
+            between 85% and 100%, indicating that a large number of states have high levels of institutional
+            healthcare access while only a few lag behind. Antenatal care coverage displays a moderately symmetric
+            distribution with most observations clustered between 60% and 80%. Adolescent fertility exhibits a
+            right-skewed distribution with most states clustered at lower values and a long tail extending toward
+            higher levels, indicating significant demographic disparities. Infant mortality rate shows a mildly
+            right-skewed distribution with most values concentrated between 10 and 20, while a few states extend
+            toward 30, suggesting that while many states experience moderate mortality levels, some continue to
+            face relatively higher risks.
           </p>
         </section>
 
+        <section id="correlation">
+          <details class="subsection">
+            <summary><h3>Correlation Analysis</h3></summary>
+          <p>
+            Correlation analysis indicates that healthcare access variables are negatively associated with IMR. 
+            Institutional delivery and antenatal care both show moderate negative correlations, suggesting that 
+            higher access to formal healthcare services is linked to better maternal and child health outcomes. 
+            The relationship between institutional delivery and IMR shows a clear negative trend, where states 
+            with higher proportions of institutional births tend to exhibit lower infant mortality rates. A similar 
+            negative association is observed for antenatal care coverage, reinforcing the importance of prenatal 
+            healthcare. These patterns are consistent with broader public health evidence highlighting the role of 
+            timely and accessible maternal care in reducing infant mortality risks.
+          <br>
+          <br>
+            In contrast, financial access shows little to no clear relationship with IMR. The regression line
+            appears relatively flat, and the clustering of observations at higher financial access levels,
+            alongside the presence of outliers, suggests that financial inclusion alone does not strongly explain
+            variation in infant mortality outcomes. Adolescent fertility demonstrates a positive relationship
+            with IMR, where states with higher adolescent fertility rates tend to experience higher infant
+            mortality levels, highlighting it as a key demographic risk factor. The noticeable dispersion of
+            points around regression lines indicates that these relationships, while meaningful, are not strongly
+            deterministic, and that additional socioeconomic and regional factors also play a role.
+          </p>
+                  </details>
+        </section>
+
+        <section id="regression">
+          <details class="subsection">
+            <summary><h3>Regression Analysis</h3></summary>
+          <p>
+            A multiple linear regression model was developed to quantify the relationship between healthcare
+            access indicators and infant mortality rate. The estimated model is :
+          </p>
+          <p style="font-family: monospace; background: #f4f4f5; padding: 14px 18px; border-radius: 8px; font-size: 12px; line-height: 1.8; overflow-x: auto; white-space: nowrap;">
+            IMR = 44.57 &minus; 0.253 (Institutional Delivery) &minus; 0.095 (Antenatal Care) + 0.025 (Adolescent Fertility)
+          </p>
+          <p>
+            The coefficients confirm the expected theoretical directions. Institutional delivery has the strongest
+            effect, where a one percentage point increase is associated with an approximate decrease of 0.25 units
+            in IMR. A one percentage point increase in antenatal care is associated with a smaller decrease of
+            approximately 0.09 units in IMR. In contrast, a one unit increase in adolescent fertility is associated
+            with an increase of approximately 0.02 units in IMR. These results suggest that improvements in
+            institutional delivery have the most substantial impact on reducing infant mortality among the
+            variables considered.
+          </p>
+                  </details>
+        </section>
+
+        <section id="evaluation">
+          <details class="subsection">
+            <summary><h3>Model Evaluation</h3></summary>
+          <p>
+            The model achieves an R&sup2; of 0.30, meaning it explains approximately 30% of the variation in IMR
+            across states. A comparison of actual and predicted IMR values shows that the model captures the
+            general trends in the data, although some variation remains unexplained. Residual analysis highlights
+            that prediction errors vary across observations, suggesting the presence of unobserved socioeconomic
+            or regional factors that also influence maternal and child health outcomes. This indicates that additional 
+            variables could improve the model’s explanatory power and provide a more comprehensive understanding 
+            of the determinants of IMR.
+          <br>
+          <br>
+            For a practical illustration, a hypothetical scenario with institutional delivery of 90%, antenatal 
+            care coverage of 75%, and adolescent fertility of 30 yields an estimated IMR of approximately 15.37. 
+            The model is based on cross-sectional data from a single year and therefore captures associations rather 
+            than causal relationships or temporal trends. Results should be interpreted as indicative rather than 
+            predictive of future outcomes and the estimates are best understood as illustrative of potential patterns 
+            under similar conditions rather than precise forecasts of real-world outcomes, serving to demonstrate 
+            how variations in key indicators may be associated with changes in IMR within the scope of the model.
+          </p>
+        </details>
+      </section>
+
 
         <section id="explore">
-              <h2>Explore the Data</h2>
+              <h2>Interactive Data Exploration</h2>
               <p style="color:#222;font-size:14px;margin-top:-10px;">Select a residence type and indicator to see how states compare.</p>
 
               <!-- RESIDENCE TOGGLE -->
@@ -391,46 +503,97 @@
             </script>
 
         <!-- SCENARIO -->
+        <section id="insights">
+          <h2>Key Insights</h2>
+          <p>
+            The analysis identifies several consistent patterns across the data. States with higher institutional 
+            delivery rates and stronger antenatal care coverage reliably exhibit lower infant mortality rates, 
+            confirming that access to formal healthcare services is a key determinant of maternal and child health 
+            outcomes. Rural areas consistently show lower healthcare access and higher IMR compared to urban areas, 
+            reflecting structural inequalities in the distribution of healthcare resources. Adolescent fertility 
+            emerges as a significant demographic risk factor, with higher rates associated with increased infant 
+            mortality across both rural and urban populations. Together, these findings highlight the interconnected 
+            role of healthcare access and demographic factors in shaping regional disparities in maternal and child 
+            health outcomes.
+          </p>
+          <p>
+            Financial access, while broadly important, does not independently explain variation in IMR, suggesting
+            that financial inclusion must be complemented by effective healthcare infrastructure and service
+            delivery to translate into improved outcomes. States like Kerala and Tamil Nadu demonstrate what is
+            achievable with sustained investment, while states such as Madhya Pradesh and Uttar Pradesh highlight
+            where the most urgent gaps remain. Collectively, the findings point to a need for targeted, multi-dimensional 
+            interventions that address both healthcare access and the underlying demographic and socioeconomic conditions 
+            that shape outcomes, with a focus on reducing regional disparities.
+          </p>
+        </section>
+
+        <section id="limitations">
+          <h2>Limitations</h2>
+          <p>
+            Several limitations should be considered when interpreting the findings of this study. The dataset
+            is cross-sectional, covering a single year, which means it captures associations at a point in time
+            rather than changes over time. This limits the ability to draw conclusions about trends or causal
+            relationships. The regression model explains approximately 30% of the variation in IMR, indicating
+            that a substantial portion of the differences across states is driven by factors not captured in
+            the model, such as quality of healthcare services, geographic accessibility, cultural factors,
+            and broader governance.
+          </p>
+          <p>
+            The financial access variable showed data inconsistencies, including extreme negative outliers, 
+            which may affect the reliability of findings related to that indicator. Additionally, the dataset 
+            aggregates observations at the state level, which may mask within-state variation across districts 
+            or communities. All findings should therefore be interpreted as indicative of associations rather 
+            than definitive causal effects, and used to inform rather than replace more detailed policy analysis. 
+            Further research using more granular, longitudinal data could help validate these patterns and provide 
+            deeper insights into the underlying dynamics, across different regions and population groups.
+        </section>
+
         <section id="scenario">
-          <h2>Test a Scenario</h2>
-          <p>Adjust the sliders below to see how shifts in healthcare access and demographic conditions are associated with changes in infant mortality across Indian states.</p>
+          <h2>Scenario Simulation</h2>
+          <p>Adjust the sliders below to see how shifts in healthcare access and demographic conditions are associated with changes in infant mortality. Select a residence type to apply realistic starting values for that context.</p>
+
+          <!-- RESIDENCE TOGGLE -->
+          <div class="residence-toggle" id="scenario-res-toggle">
+            <button class="res-btn active" data-res="Rural">🌾 Rural</button>
+            <button class="res-btn" data-res="Urban">🏙️ Urban</button>
+          </div>
 
           <div class="scenario-card">
 
             <div class="scenario-sliders">
-
+              <div class="scenario-context" id="scenario-context"></div>
               <div class="slider-row">
                 <div class="slider-meta">
                   <span class="slider-label">Institutional Delivery</span>
-                  <span class="slider-value" id="val-delivery">90%</span>
+                  <span class="slider-value" id="val-delivery">80%</span>
                 </div>
-                <input type="range" class="scenario-range" id="sl-delivery" min="60" max="100" value="90">
+                <input type="range" class="scenario-range" id="sl-delivery" min="60" max="100" value="80">
                 <div class="slider-ends"><span>60%</span><span>100%</span></div>
               </div>
 
               <div class="slider-row">
                 <div class="slider-meta">
                   <span class="slider-label">Antenatal Care</span>
-                  <span class="slider-value" id="val-antenatal">70%</span>
+                  <span class="slider-value" id="val-antenatal">60%</span>
                 </div>
-                <input type="range" class="scenario-range" id="sl-antenatal" min="20" max="90" value="70">
+                <input type="range" class="scenario-range" id="sl-antenatal" min="20" max="90" value="60">
                 <div class="slider-ends"><span>20%</span><span>90%</span></div>
               </div>
 
               <div class="slider-row">
                 <div class="slider-meta">
                   <span class="slider-label">Adolescent Fertility</span>
-                  <span class="slider-value" id="val-fertility">30</span>
+                  <span class="slider-value" id="val-fertility">50</span>
                 </div>
-                <input type="range" class="scenario-range" id="sl-fertility" min="10" max="80" value="30">
-                <div class="slider-ends"><span>10</span><span>80</span></div>
+                <input type="range" class="scenario-range" id="sl-fertility" min="0" max="93" value="50">
+                <div class="slider-ends"><span>0</span><span>93</span></div>
               </div>
 
             </div>
 
             <div class="scenario-result">
               <div class="result-label">Estimated IMR</div>
-              <div class="result-value" id="imr-result">15.9</div>
+              <div class="result-value" id="imr-result">--</div>
               <div class="result-sub">infant deaths per 1,000 live births</div>
               <div class="result-bar-wrap">
                 <div class="result-bar-track">
@@ -447,10 +610,24 @@
         </section>
 
         <script>
-          const intercept  =  44.57;
-          const bDelivery  = -0.253;
-          const bAntenatal = -0.095;
-          const bFertility =  0.025;
+          const intercept  =  44.567;
+          const bDelivery  = -0.2535;
+          const bAntenatal = -0.0950;
+          const bFertility =  0.0247;
+
+          // Rural/Urban default slider values based on actual data averages
+          const scenarioDefaults = {
+            Rural: { delivery: 80, antenatal: 60, fertility: 50 },
+            Urban: { delivery: 95, antenatal: 75, fertility: 20 }
+          };
+
+          // Real data context for each residence type
+          const scenarioContext = {
+            Rural: "Rural averages: Institutional Delivery ~90%, Antenatal Care ~64%, Adolescent Fertility ~43. Average IMR ~18.6.",
+            Urban: "Urban averages: Institutional Delivery ~95%, Antenatal Care ~69%, Adolescent Fertility ~26. Average IMR ~12.8."
+          };
+
+          let scenarioRes = "Rural";
 
           function updateScenario() {
             const d = +document.getElementById("sl-delivery").value;
@@ -470,23 +647,41 @@
               imr < 12 ? "#16a34a" : imr < 20 ? "#f59e0b" : "#dc2626";
 
             const note = imr < 12 ? "✦ Low risk — strong healthcare access"
-                       : imr < 20 ? "◆ Moderate risk — room for improvement"
-                       :            "▲ High risk — urgent intervention needed";
+                       : imr < 20 ? " Moderate risk — room for improvement"
+                       :            " High risk — urgent intervention needed";
             document.getElementById("imr-note").textContent = note;
             document.getElementById("imr-note").className =
               "result-note " + (imr < 12 ? "note-low" : imr < 20 ? "note-mid" : "note-high");
           }
 
+          function applyResidenceDefaults(res) {
+            const def = scenarioDefaults[res];
+            document.getElementById("sl-delivery").value  = def.delivery;
+            document.getElementById("sl-antenatal").value = def.antenatal;
+            document.getElementById("sl-fertility").value = def.fertility;
+            document.getElementById("scenario-context").textContent = scenarioContext[res];
+            updateScenario();
+          }
+
+          document.querySelectorAll("#scenario-res-toggle .res-btn").forEach(btn => {
+            btn.onclick = () => {
+              document.querySelectorAll("#scenario-res-toggle .res-btn").forEach(b => b.classList.remove("active"));
+              btn.classList.add("active");
+              scenarioRes = btn.dataset.res;
+              applyResidenceDefaults(scenarioRes);
+            };
+          });
+
           ["sl-delivery","sl-antenatal","sl-fertility"].forEach(id => {
             document.getElementById(id).addEventListener("input", updateScenario);
           });
 
-          updateScenario();
+          applyResidenceDefaults("Rural");
         </script>
 
         <!-- SUMMARY -->
         <section id="summary">
-          <h2>Summary</h2>
+          <h2>Conclusion</h2>
           <p>
             This study set out to understand how healthcare access shapes maternal and child health outcomes across 
             Indian states. The data consistently shows that states with higher institutional delivery rates and stronger 
@@ -507,14 +702,14 @@
             distributed across states. Addressing maternal and child health at scale will therefore require not just 
             expanding services, but ensuring that institutional delivery and antenatal care improvements reach populations 
             that remain underserved. Ultimately, the analysis highlights that maternal health is as much an issue of 
-            equitable access as it is of healthcare provision, with disparities in outcomes reflecting deeper structural 
+            equitable access as it is of healthcare provision, and closing these gaps will demand sustained, targeted commitment from policymakers, with disparities in outcomes reflecting deeper structural 
             inequalities across regions.
           </p>
         </section>
 
         <!-- REFERENCES -->
         <section id="references">
-          <h2>Works Cited</h2>
+          <h2>References</h2>
           <p>
             National Institution for Transforming India (NITI Aayog). 
             <i>National Family Health Survey (NFHS-4 & NFHS-5) : State-wise Data.</i> 
