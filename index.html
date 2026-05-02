@@ -268,7 +268,7 @@
 
         <section id="explore">
               <h2>Interactive Data Exploration</h2>
-              <p style="color:#222;font-size:14px;margin-top:-10px;">Select a residence type and indicator to see how states compare.</p>
+              <p style="color:#666;font-size:15px;margin-top:-10px;">Select a residence type and indicator to see how states compare.</p>
 
               <!-- RESIDENCE TOGGLE -->
               <div class="residence-toggle">
@@ -550,60 +550,155 @@
 
         <section id="scenario">
           <h2>Scenario Simulation</h2>
-          <p>Adjust the sliders below to see how shifts in healthcare access and demographic conditions are associated with changes in infant mortality. Select a residence type to apply realistic starting values for that context.</p>
+                    <p style="color:#666;font-size:16px;line-height:1.5;">Adjust the sliders below to see how shifts in healthcare access and demographic conditions are associated with changes in infant mortality. Select a residence type and optionally a state to load its real data values.</p>
 
-          <!-- RESIDENCE TOGGLE -->
-          <div class="residence-toggle" id="scenario-res-toggle">
-            <button class="res-btn active" data-res="Rural">🌾 Rural</button>
-            <button class="res-btn" data-res="Urban">🏙️ Urban</button>
-          </div>
-
-          <div class="scenario-card">
-
-            <div class="scenario-sliders">
-              <div class="scenario-context" id="scenario-context"></div>
-              <div class="slider-row">
-                <div class="slider-meta">
-                  <span class="slider-label">Institutional Delivery</span>
-                  <span class="slider-value" id="val-delivery">80%</span>
-                </div>
-                <input type="range" class="scenario-range" id="sl-delivery" min="60" max="100" value="80">
-                <div class="slider-ends"><span>60%</span><span>100%</span></div>
-              </div>
-
-              <div class="slider-row">
-                <div class="slider-meta">
-                  <span class="slider-label">Antenatal Care</span>
-                  <span class="slider-value" id="val-antenatal">60%</span>
-                </div>
-                <input type="range" class="scenario-range" id="sl-antenatal" min="20" max="90" value="60">
-                <div class="slider-ends"><span>20%</span><span>90%</span></div>
-              </div>
-
-              <div class="slider-row">
-                <div class="slider-meta">
-                  <span class="slider-label">Adolescent Fertility</span>
-                  <span class="slider-value" id="val-fertility">50</span>
-                </div>
-                <input type="range" class="scenario-range" id="sl-fertility" min="0" max="93" value="50">
-                <div class="slider-ends"><span>0</span><span>93</span></div>
-              </div>
-
+          <div class="scenario-compare-grid">
+            <div class="scenario-panel-wrap">
+              <div class="scenario-panel-label">Scenario A</div>
+              <div class="scenario-top-bar">
+                          <div class="residence-toggle" id="res-toggle-1">
+                            <button class="res-btn active" data-res="Rural">🌾 Rural</button>
+                            <button class="res-btn" data-res="Urban">🏙️ Urban</button>
+                          </div>
+                          <div class="state-selector-wrap">
+                            <label class="state-selector-label" for="stateSelect-1">Load a state</label>
+                            <select id="stateSelect-1" class="state-select">
+                            <option value="">— select a state —</option>
+                            <option>Andhra Pradesh</option><option>Assam</option>
+                            <option>Bihar</option><option>Chhattisgarh</option>
+                            <option>Delhi</option><option>Gujarat</option>
+                            <option>Haryana</option><option>Himachal Pradesh</option>
+                            <option>Jammu and Kashmir</option><option>Jharkhand</option>
+                            <option>Karnataka</option><option>Kerala</option>
+                            <option>Ladakh</option><option>Madhya Pradesh</option>
+                            <option>Maharashtra</option><option>Odisha</option>
+                            <option>Punjab</option><option>Rajasthan</option>
+                            <option>Tamil Nadu</option><option>Telangana</option>
+                            <option>Uttar Pradesh</option><option>Uttarakhand</option>
+                            <option>West Bengal</option>
+                            </select>
+                          </div>
+                        </div>
+              
+                        <div class="scenario-card">
+                          <div class="scenario-sliders">
+                            <div class="scenario-context" id="scenario-context-1"></div>
+              
+                            <div class="slider-row">
+                              <div class="slider-meta">
+                                <span class="slider-label">Institutional Delivery</span>
+                                <span class="slider-value" id="val-delivery-1">90%</span>
+                              </div>
+                              <input type="range" class="scenario-range" id="sl-delivery-1" min="60" max="100" value="90">
+                              <div class="slider-ends"><span>60%</span><span>100%</span></div>
+                            </div>
+              
+                            <div class="slider-row">
+                              <div class="slider-meta">
+                                <span class="slider-label">Antenatal Care</span>
+                                <span class="slider-value" id="val-antenatal-1">64%</span>
+                              </div>
+                              <input type="range" class="scenario-range" id="sl-antenatal-1" min="20" max="90" value="64">
+                              <div class="slider-ends"><span>20%</span><span>90%</span></div>
+                            </div>
+              
+                            <div class="slider-row">
+                              <div class="slider-meta">
+                                <span class="slider-label">Adolescent Fertility</span>
+                                <span class="slider-value" id="val-fertility-1">43</span>
+                              </div>
+                              <input type="range" class="scenario-range" id="sl-fertility-1" min="0" max="93" value="43">
+                              <div class="slider-ends"><span>0</span><span>93</span></div>
+                            </div>
+                          </div>
+              
+                          <div class="scenario-result">
+                            <div class="result-label">Estimated IMR</div>
+                            <div class="result-value" id="imr-result-1">--</div>
+                            <div class="result-sub">infant deaths per 1,000 live births</div>
+                            <div class="result-bar-wrap">
+                              <div class="result-bar-track">
+                                <div class="result-bar-fill" id="imr-bar-1"></div>
+                              </div>
+                              <div class="result-bar-ends"><span>0</span><span>50</span></div>
+                            </div>
+                            <div class="result-note" id="imr-note-1"></div>
+                          </div>
+                        </div>
             </div>
-
-            <div class="scenario-result">
-              <div class="result-label">Estimated IMR</div>
-              <div class="result-value" id="imr-result">--</div>
-              <div class="result-sub">infant deaths per 1,000 live births</div>
-              <div class="result-bar-wrap">
-                <div class="result-bar-track">
-                  <div class="result-bar-fill" id="imr-bar"></div>
-                </div>
-                <div class="result-bar-ends"><span>0</span><span>50</span></div>
-              </div>
-              <div class="result-note" id="imr-note"></div>
+            <div class="scenario-panel-wrap">
+              <div class="scenario-panel-label">Scenario B</div>
+              <div class="scenario-top-bar">
+                          <div class="residence-toggle" id="res-toggle-2">
+                            <button class="res-btn" data-res="Rural">🌾 Rural</button>
+                            <button class="res-btn active" data-res="Urban">🏙️ Urban</button>
+                          </div>
+                          <div class="state-selector-wrap">
+                            <label class="state-selector-label" for="stateSelect-2">Load a state</label>
+                            <select id="stateSelect-2" class="state-select">
+                            <option value="">— select a state —</option>
+                            <option>Andhra Pradesh</option><option>Assam</option>
+                            <option>Bihar</option><option>Chhattisgarh</option>
+                            <option>Delhi</option><option>Gujarat</option>
+                            <option>Haryana</option><option>Himachal Pradesh</option>
+                            <option>Jammu and Kashmir</option><option>Jharkhand</option>
+                            <option>Karnataka</option><option>Kerala</option>
+                            <option>Ladakh</option><option>Madhya Pradesh</option>
+                            <option>Maharashtra</option><option>Odisha</option>
+                            <option>Punjab</option><option>Rajasthan</option>
+                            <option>Tamil Nadu</option><option>Telangana</option>
+                            <option>Uttar Pradesh</option><option>Uttarakhand</option>
+                            <option>West Bengal</option>
+                            </select>
+                          </div>
+                        </div>
+              
+                        <div class="scenario-card">
+                          <div class="scenario-sliders">
+                            <div class="scenario-context" id="scenario-context-2"></div>
+              
+                            <div class="slider-row">
+                              <div class="slider-meta">
+                                <span class="slider-label">Institutional Delivery</span>
+                                <span class="slider-value" id="val-delivery-2">95%</span>
+                              </div>
+                              <input type="range" class="scenario-range" id="sl-delivery-2" min="60" max="100" value="95">
+                              <div class="slider-ends"><span>60%</span><span>100%</span></div>
+                            </div>
+              
+                            <div class="slider-row">
+                              <div class="slider-meta">
+                                <span class="slider-label">Antenatal Care</span>
+                                <span class="slider-value" id="val-antenatal-2">69%</span>
+                              </div>
+                              <input type="range" class="scenario-range" id="sl-antenatal-2" min="20" max="90" value="69">
+                              <div class="slider-ends"><span>20%</span><span>90%</span></div>
+                            </div>
+              
+                            <div class="slider-row">
+                              <div class="slider-meta">
+                                <span class="slider-label">Adolescent Fertility</span>
+                                <span class="slider-value" id="val-fertility-2">26</span>
+                              </div>
+                              <input type="range" class="scenario-range" id="sl-fertility-2" min="0" max="93" value="26">
+                              <div class="slider-ends"><span>0</span><span>93</span></div>
+                            </div>
+                          </div>
+              
+                          <div class="scenario-result">
+                            <div class="result-label">Estimated IMR</div>
+                            <div class="result-value" id="imr-result-2">--</div>
+                            <div class="result-sub">infant deaths per 1,000 live births</div>
+                            <div class="result-bar-wrap">
+                              <div class="result-bar-track">
+                                <div class="result-bar-fill" id="imr-bar-2"></div>
+                              </div>
+                              <div class="result-bar-ends"><span>0</span><span>50</span></div>
+                            </div>
+                            <div class="result-note" id="imr-note-2"></div>
+                          </div>
+                        </div>
             </div>
-
           </div>
 
           <p class="scenario-footnote">This tool uses a multiple linear regression model trained on NFHS-5 state-level data across India. It estimates how changes in three key healthcare indicators, institutional delivery rates, antenatal care coverage, and adolescent fertility, are associated with infant mortality rates (IMR). Each slider adjusts one variable while holding the others constant, letting you explore how different combinations of conditions relate to predicted outcomes. The model explains roughly 30% of the variation in IMR (R² = 0.30), meaning healthcare access is an important but not the only factor at play. Results are illustrative estimates intended to support understanding, not clinical or policy forecasts.</p>
@@ -615,68 +710,172 @@
           const bAntenatal = -0.0950;
           const bFertility =  0.0247;
 
-          // Rural/Urban default slider values based on actual data averages
+          const stateData = {
+            "Andhra Pradesh":    { Rural:[95.7,67.6,80,20.86],  Urban:[98.6,67.2,40,12.12] },
+            "Assam":             { Rural:[82.9,49.2,64,24.68],  Urban:[93.5,62.6,41,12.32] },
+            "Bihar":             { Rural:[75.0,24.0,80,20.64],  Urban:[84.1,32.4,60,16.14] },
+            "Chhattisgarh":      { Rural:[83.9,59.6,25,23.36],  Urban:[93.1,62.2,19,18.52] },
+            "Delhi":             { Rural:[90.4,83.1,42,12.4],   Urban:[91.8,77.1,18,9.62]  },
+            "Gujarat":           { Rural:[92.2,73.3,40,20.82],  Urban:[97.8,82.4,24,11.26] },
+            "Haryana":           { Rural:[94.4,59.2,29,20.28],  Urban:[96.1,63.1,21,14.72] },
+            "Himachal Pradesh":  { Rural:[87.6,69.3,22,15.0],   Urban:[93.1,77.3,21,10.0]  },
+            "Jammu and Kashmir": { Rural:[90.5,80.2,10,16.42],  Urban:[98.6,83.1,5,12.28]  },
+            "Jharkhand":         { Rural:[73.1,36.4,73,18.38],  Urban:[89.1,48.5,34,12.24] },
+            "Karnataka":         { Rural:[96.2,70.6,47,16.48],  Urban:[98.3,71.2,27,10.8]  },
+            "Kerala":            { Rural:[99.8,78.0,21,5.52],   Urban:[99.7,79.3,15,4.22]  },
+            "Ladakh":            { Rural:[94.0,78.5,2,16.42],   Urban:[99.1,78.2,0,12.28]  },
+            "Madhya Pradesh":    { Rural:[89.2,55.6,43,29.22],  Urban:[95.8,63.3,19,18.08] },
+            "Maharashtra":       { Rural:[93.1,68.7,63,13.98],  Urban:[96.7,72.2,29,7.64]  },
+            "Odisha":            { Rural:[91.3,77.4,43,25.88],  Urban:[97.5,82.0,27,18.56] },
+            "Punjab":            { Rural:[95.5,58.4,23,12.8],   Urban:[92.0,60.8,17,10.92] },
+            "Rajasthan":         { Rural:[94.2,53.9,34,25.1],   Urban:[97.5,60.6,17,14.34] },
+            "Tamil Nadu":        { Rural:[99.4,90.8,44,11.38],  Urban:[99.8,88.8,23,7.72]  },
+            "Telangana":         { Rural:[96.6,70.0,56,19.64],  Urban:[97.7,71.1,34,12.72] },
+            "Uttar Pradesh":     { Rural:[82.9,39.6,24,26.62],  Urban:[85.5,52.3,14,18.02] },
+            "Uttarakhand":       { Rural:[80.4,57.3,21,17.23],  Urban:[89.4,71.0,17,17.29] },
+            "West Bengal":       { Rural:[91.6,73.8,93,14.42],  Urban:[92.3,81.2,51,11.8]  }
+          };
+
           const scenarioDefaults = {
-            Rural: { delivery: 80, antenatal: 60, fertility: 50 },
-            Urban: { delivery: 95, antenatal: 75, fertility: 20 }
+            Rural: { delivery:80, antenatal:60, fertility:50 },
+            Urban: { delivery:95, antenatal:75, fertility:20 }
           };
 
-          // Real data context for each residence type
           const scenarioContext = {
-            Rural: "Rural averages: Institutional Delivery ~90%, Antenatal Care ~64%, Adolescent Fertility ~43. Average IMR ~18.6.",
-            Urban: "Urban averages: Institutional Delivery ~95%, Antenatal Care ~69%, Adolescent Fertility ~26. Average IMR ~12.8."
+            Rural: "Rural averages : Delivery ~ 90% \n Antenatal ~ 64% \n Fertility ~ 43 \n Average IMR ~ 18.6",
+            Urban: "Urban averages : Delivery ~ 95% \n Antenatal ~ 69% \n Fertility ~ 26 \n Average IMR ~ 12.8"
           };
 
-          let scenarioRes = "Rural";
+          let scenarioRes1 = "Rural";
+          let activeState1 = "";
+          let scenarioRes2 = "Urban";
+          let activeState2 = "";
 
           function updateScenario() {
-            const d = +document.getElementById("sl-delivery").value;
-            const a = +document.getElementById("sl-antenatal").value;
-            const f = +document.getElementById("sl-fertility").value;
-
-            document.getElementById("val-delivery").textContent  = d + "%";
-            document.getElementById("val-antenatal").textContent = a + "%";
-            document.getElementById("val-fertility").textContent = f;
-
+            const d = +document.getElementById("sl-delivery-1").value;
+            const a = +document.getElementById("sl-antenatal-1").value;
+            const f = +document.getElementById("sl-fertility-1").value;
+            document.getElementById("val-delivery-1").textContent  = d + "%";
+            document.getElementById("val-antenatal-1").textContent = a + "%";
+            document.getElementById("val-fertility-1").textContent = f;
             const imr = Math.max(0, intercept + bDelivery*d + bAntenatal*a + bFertility*f);
-            document.getElementById("imr-result").textContent = imr.toFixed(1);
-
-            const pct = Math.min(imr / 50 * 100, 100);
-            document.getElementById("imr-bar").style.width = pct + "%";
-            document.getElementById("imr-bar").style.background =
+            document.getElementById("imr-result-1").textContent = imr.toFixed(1);
+            const pct = Math.min(imr/50*100, 100);
+            document.getElementById("imr-bar-1").style.width = pct + "%";
+            document.getElementById("imr-bar-1").style.background =
               imr < 12 ? "#16a34a" : imr < 20 ? "#f59e0b" : "#dc2626";
-
             const note = imr < 12 ? "✦ Low risk — strong healthcare access"
-                       : imr < 20 ? " Moderate risk — room for improvement"
-                       :            " High risk — urgent intervention needed";
-            document.getElementById("imr-note").textContent = note;
-            document.getElementById("imr-note").className =
+                       : imr < 20 ? "Moderate risk — room for improvement"
+                       :            "High risk — urgent intervention needed";
+            document.getElementById("imr-note-1").textContent = note;
+            document.getElementById("imr-note-1").className =
               "result-note " + (imr < 12 ? "note-low" : imr < 20 ? "note-mid" : "note-high");
           }
 
-          function applyResidenceDefaults(res) {
+          function applyDefaults(res) {
             const def = scenarioDefaults[res];
-            document.getElementById("sl-delivery").value  = def.delivery;
-            document.getElementById("sl-antenatal").value = def.antenatal;
-            document.getElementById("sl-fertility").value = def.fertility;
-            document.getElementById("scenario-context").textContent = scenarioContext[res];
+            document.getElementById("sl-delivery-1").value  = def.delivery;
+            document.getElementById("sl-antenatal-1").value = def.antenatal;
+            document.getElementById("sl-fertility-1").value = def.fertility;
+            document.getElementById("scenario-context-1").textContent = scenarioContext[res];
+            document.getElementById("stateSelect-1").value = "";
+            activeState1 = "";
             updateScenario();
           }
 
-          document.querySelectorAll("#scenario-res-toggle .res-btn").forEach(btn => {
+          function applyState(state, res) {
+            if (!state || !stateData[state]) { applyDefaults(res); return; }
+            const d = stateData[state][res];
+            document.getElementById("sl-delivery-1").value  = d[0];
+            document.getElementById("sl-antenatal-1").value = d[1];
+            document.getElementById("sl-fertility-1").value = d[2];
+            document.getElementById("scenario-context-1").textContent =
+              state + " (" + res + "): Delivery " + d[0] + "%, Antenatal " + d[1] + "%, Fertility " + d[2] + ". Actual IMR: " + d[3] + ".";
+            activeState1 = state;
+            updateScenario();
+          }
+
+          document.querySelectorAll("#res-toggle-1 .res-btn").forEach(btn => {
             btn.onclick = () => {
-              document.querySelectorAll("#scenario-res-toggle .res-btn").forEach(b => b.classList.remove("active"));
+              document.querySelectorAll("#res-toggle-1 .res-btn").forEach(b => b.classList.remove("active"));
               btn.classList.add("active");
-              scenarioRes = btn.dataset.res;
-              applyResidenceDefaults(scenarioRes);
+              scenarioRes1 = btn.dataset.res;
+              activeState1 ? applyState(activeState1, scenarioRes1) : applyDefaults(scenarioRes1);
             };
           });
 
-          ["sl-delivery","sl-antenatal","sl-fertility"].forEach(id => {
+          document.getElementById("stateSelect-1").addEventListener("change", function() {
+            applyState(this.value, scenarioRes1);
+          });
+
+          ["sl-delivery-1","sl-antenatal-1","sl-fertility-1"].forEach(id => {
             document.getElementById(id).addEventListener("input", updateScenario);
           });
 
-          applyResidenceDefaults("Rural");
+          applyDefaults("Rural");
+          
+          function updateScenario2() {
+            const d = +document.getElementById("sl-delivery-2").value;
+            const a = +document.getElementById("sl-antenatal-2").value;
+            const f = +document.getElementById("sl-fertility-2").value;
+            document.getElementById("val-delivery-2").textContent  = d + "%";
+            document.getElementById("val-antenatal-2").textContent = a + "%";
+            document.getElementById("val-fertility-2").textContent = f;
+            const imr = Math.max(0, intercept + bDelivery*d + bAntenatal*a + bFertility*f);
+            document.getElementById("imr-result-2").textContent = imr.toFixed(1);
+            const pct = Math.min(imr/50*100, 100);
+            document.getElementById("imr-bar-2").style.width = pct + "%";
+            document.getElementById("imr-bar-2").style.background =
+              imr < 12 ? "#16a34a" : imr < 20 ? "#f59e0b" : "#dc2626";
+            const note = imr < 12 ? "✦ Low risk — strong healthcare access"
+                       : imr < 20 ? "Moderate risk — room for improvement"
+                       :            "High risk — urgent intervention needed";
+            document.getElementById("imr-note-2").textContent = note;
+            document.getElementById("imr-note-2").className =
+              "result-note " + (imr < 12 ? "note-low" : imr < 20 ? "note-mid" : "note-high");
+          }
+
+          function applyDefaults2(res) {
+            const def = scenarioDefaults[res];
+            document.getElementById("sl-delivery-2").value  = def.delivery;
+            document.getElementById("sl-antenatal-2").value = def.antenatal;
+            document.getElementById("sl-fertility-2").value = def.fertility;
+            document.getElementById("scenario-context-2").textContent = scenarioContext[res];
+            document.getElementById("stateSelect-2").value = "";
+            activeState2 = "";
+            updateScenario2();
+          }
+
+          function applyState2(state, res) {
+            if (!state || !stateData[state]) { applyDefaults2(res); return; }
+            const d = stateData[state][res];
+            document.getElementById("sl-delivery-2").value  = d[0];
+            document.getElementById("sl-antenatal-2").value = d[1];
+            document.getElementById("sl-fertility-2").value = d[2];
+            document.getElementById("scenario-context-2").textContent =
+              state + " (" + res + "): Delivery " + d[0] + "%, Antenatal " + d[1] + "%, Fertility " + d[2] + ". Actual IMR: " + d[3] + ".";
+            activeState2 = state;
+            updateScenario2();
+          }
+
+          document.querySelectorAll("#res-toggle-2 .res-btn").forEach(btn => {
+            btn.onclick = () => {
+              document.querySelectorAll("#res-toggle-2 .res-btn").forEach(b => b.classList.remove("active"));
+              btn.classList.add("active");
+              scenarioRes2 = btn.dataset.res;
+              activeState2 ? applyState2(activeState2, scenarioRes2) : applyDefaults2(scenarioRes2);
+            };
+          });
+
+          document.getElementById("stateSelect-2").addEventListener("change", function() {
+            applyState2(this.value, scenarioRes2);
+          });
+
+          ["sl-delivery-2","sl-antenatal-2","sl-fertility-2"].forEach(id => {
+            document.getElementById(id).addEventListener("input", updateScenario2);
+          });
+
+          applyDefaults2("Urban");
         </script>
 
         <!-- SUMMARY -->
