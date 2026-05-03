@@ -1181,3 +1181,81 @@ figcaption {
 }
 
 .dark .scenario-panel-label { color: #555; }
+
+/* FORMULA CARD */
+.formula-card {
+  background: #f8f7ff;
+  border: 1.5px solid #e0d9ff;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 16px 0;
+  box-shadow: 0 2px 10px rgba(124,58,237,0.07);
+}
+
+.formula-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #9c7ee8;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.formula-body {
+  font-family: Georgia, serif;
+  font-size: 15px;
+  color: #222;
+  line-height: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.formula-result { font-weight: 700; }
+.formula-eq     { color: #888; }
+
+.formula-pill {
+  background: #fff;
+  border: 1.5px solid #e0d9ff;
+  border-radius: 6px;
+  padding: 2px 10px;
+}
+
+.formula-neg { color: #dc2626; font-weight: 600; }
+.formula-pos { color: #16a34a; font-weight: 600; }
+
+.dark .formula-card {
+  background: #1a1d24;
+  border-color: #2e1a5e;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.dark .formula-pill {
+  background: #13151a;
+  border-color: #2e1a5e;
+  color: #eee;
+}
+
+.dark .formula-label { color: #c4b5fd; }
+.dark .formula-body  { color: #eee; }
+
+/* FORMULA BOX */
+.formula-box {
+  font-family: monospace;
+  background: #f4f4f5;
+  color: #222;
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-size: clamp(9px, 1.45vw, 11.5px);
+  line-height: 1.8;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.dark .formula-box {
+  background: #1a1d24;
+  color: #eee;
+}
